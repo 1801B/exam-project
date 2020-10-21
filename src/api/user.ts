@@ -6,6 +6,16 @@ interface Login {
   password: string;
 }
 
+export function userData() {
+  const url = "/api/user/user";
+  return request.get(url);
+}
+
+export function userIdentity() {
+  const url = "/api/user/identity";
+  return request.get(url);
+}
+
 // 登录
 export function _login({ username, password }: Login) {
   const url = "/api/user/login";

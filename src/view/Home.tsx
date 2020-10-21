@@ -4,7 +4,6 @@ import RouterView from "@/router/RouterView";
 import { Link } from "react-router-dom";
 import { AppstoreOutlined } from "@ant-design/icons";
 import { observer, inject } from "mobx-react";
-import { _examType } from "@/api/exam";
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
@@ -22,8 +21,8 @@ interface Istate {
   headText: string;
 }
 
-@observer
 @inject((store) => store)
+@observer
 export default class Testques extends Component<Iprops, Istate> {
   constructor(props: Iprops) {
     super(props);
@@ -31,13 +30,8 @@ export default class Testques extends Component<Iprops, Istate> {
       headText: "添加试题",
     };
   }
-
-  async componentDidMount() {
-    let res = await _examType();
-    console.log(res.data);
-  }
+  componentDidMount() {}
   render() {
-    console.log(this.props);
     return (
       <div className="home">
         <header className="header">
@@ -58,7 +52,7 @@ export default class Testques extends Component<Iprops, Istate> {
             }}
           >
             <div className="logo" />
-            <Menu theme="dark" mode="inline" defaultSelectedKeys={["4"]} onClick={({ item }) => this.changHeadText({ item })}>
+            <Menu theme="dark" mode="inline" onClick={({ item }) => this.changHeadText({ item })}>
               <SubMenu key="sub1" icon={<AppstoreOutlined />} title="试卷管理">
                 <Menu.Item key="1">
                   <Link to="/home/testadd">添加试题</Link>
@@ -108,10 +102,8 @@ export default class Testques extends Component<Iprops, Istate> {
             <Header className="site-layout-sub-header-background" style={{ padding: 0 }}>
               {this.state.headText}
             </Header>
-            <Content style={{ margin: "24px 16px 0" }}>
-              <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
-                <RouterView routes={this.props.routes} />
-              </div>
+            <Content style={{ margin: "24px 0 0 16px" }}>
+              <RouterView routes={this.props.routes} />
             </Content>
           </Layout>
         </Layout>
@@ -120,7 +112,7 @@ export default class Testques extends Component<Iprops, Istate> {
   }
   changHeadText({ item }: any) {
     this.setState({
-      headText: item.props.children[1],
+      headText: item.props.children[1].props.children,
     });
   }
 }
