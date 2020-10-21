@@ -3,11 +3,11 @@
  * @Author: 刘涵
  * @Date: 2020-10-19 10:37:01
  * @LastEditors: 刘涵
- * @LastEditTime: 2020-10-19 21:41:06
+ * @LastEditTime: 2020-10-20 14:31:53
  * @FilePath: \react-mobx-ts\src\router\config.ts
  */
 import Home from '@/view/Home'
-import Detail from '@/view/Detail'
+import Login from '@/view/Login'
 
 // 引入2级路由
 import Testadd from '@/view/home/Testadd'
@@ -25,6 +25,14 @@ import Classroom from '@/view/home/Classroom'
 import Student from '@/view/home/Student'
 
 import Waitclass from '@/view/home/Waitclass'
+
+// 引入3级路由
+import Apioth from '@/view/home/usershow/Apioth'
+import Iddata from '@/view/home/usershow/Iddata'
+import Idnapi from '@/view/home/usershow/Idnapi'
+import Idnoth from '@/view/home/usershow/Idnoth'
+import Userdata from '@/view/home/usershow/Userdata'
+import Viewoth from '@/view/home/usershow/Viewoth'
 
 const router = [
     {
@@ -59,7 +67,39 @@ const router = [
             {
                 path: '/home/usershow',
                 name: 'Usershow',
-                component: Usershow
+                component: Usershow,
+                children: [
+                    {
+                        path: '/home/usershow/userdata',
+                        name: 'Userdata',
+                        component: Userdata,
+                    },
+                    {
+                        path: '/home/usershow/iddata',
+                        name: 'Iddata',
+                        component: Iddata,
+                    },
+                    {
+                        path: '/home/usershow/apioth',
+                        name: 'Apioth',
+                        component: Apioth,
+                    },
+                    {
+                        path: '/home/usershow/idnapi',
+                        name: 'Idnapi',
+                        component: Idnapi,
+                    },
+                    {
+                        path: '/home/usershow/viewoth',
+                        name: 'Viewoth',
+                        component: Viewoth,
+                    },
+                    {
+                        path: '/home/usershow/idnoth',
+                        name: 'Idnoth',
+                        component: Idnoth,
+                    },
+                ]
             },
             {
                 path: '/home/examadd',
@@ -99,9 +139,9 @@ const router = [
         ]
     },
     {
-        path: '/detail',
-        name: 'Detail',
-        component: Detail
+        path: '/login',
+        name: 'Login',
+        component: Login
     }
 ];
 
