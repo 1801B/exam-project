@@ -1,7 +1,7 @@
 import React from "react";
 import { Form, Input, Button, Tabs, notification } from "antd";
 import { CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
-import { _edit } from "@/api/user";
+import { _identityEdit } from "@/api/user";
 
 const { TabPane } = Tabs;
 
@@ -9,9 +9,7 @@ function Identity() {
   const [form] = Form.useForm();
 
   const onFinish = async (values: any) => {
-    console.log(values);
-    let res = await _edit(values);
-    console.log(res.data);
+    let res = await _identityEdit(values);
     if (res.data.code !== 1) {
       openNotification({ code: res.data.code, msg: res.data.msg });
     } else {
@@ -21,7 +19,6 @@ function Identity() {
   };
 
   const onReset = () => {
-    openNotification({ code: 1, msg: "" });
     form.resetFields();
   };
 

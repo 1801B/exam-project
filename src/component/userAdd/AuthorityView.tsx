@@ -1,43 +1,77 @@
-import React from "react";
-import { Form, Input, Button, Checkbox } from "antd";
+import React, { useState, useEffect } from "react";
+import { Tabs, Form, Button, Select, notification } from "antd";
+import { CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
+import { _viewAuthority, _authorityApiEdit } from "@/api/user";
+import { AuthorityApiEdit } from "@/interface";
 
-const layout = {
-  labelCol: { span: 8 },
-  wrapperCol: { span: 16 },
-};
-const tailLayout = {
-  wrapperCol: { offset: 8, span: 16 },
-};
+const { TabPane } = Tabs;
+const { Option } = Select;
 
 function AuthorityView() {
-  const onFinish = (values: any) => {
-    console.log("Success:", values);
+  const [form] = Form.useForm();
+  const [optionList, setOptions] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      let res = await _viewAuthority();
+      setOptions(res.data.data);
+    })();
+  }, []);
+
+  useEffect(() => {
+    return;
+  }, [optionList]);
+
+  const onFinish = async (values: AuthorityApiEdit) => {
+    let res = await _authorityApiEdit(values);
+    if (res.data.code !== 1) {
+      openNotification({ code: res.data.code, msg: res.data.msg });
+    } else {
+      openNotification({ code: res.data.code, msg: res.data.msg });
+    }
+    form.resetFields();
   };
 
-  const onFinishFailed = (errorInfo: any) => {
-    console.log("Failed:", errorInfo);
+  const onReset = () => {
+    form.resetFields();
+  };
+
+  const openNotification = ({ code, msg }: { code: number; msg: string }) => {
+    notification.open({
+      message: msg,
+      duration: 3,
+      description: "",
+      icon: code === 1 ? <CheckCircleOutlined style={{ color: "#1890ff" }} /> : <CloseCircleOutlined style={{ color: "#ff4d4f" }} />,
+    });
   };
 
   return (
-    <Form className="userTab" {...layout} name="basic" initialValues={{ remember: true }} onFinish={onFinish} onFinishFailed={onFinishFailed}>
-      <Form.Item label="Username" name="username" rules={[{ required: true, message: "Please input your username!" }]}>
-        <Input />
-      </Form.Item>
+    <Tabs type="card" className="tabs">
+      <TabPane tab="添加视图接口权限" key="5">
+        <Form form={form} name="add" initialValues={{ remember: true }} onFinish={onFinish}>
+          <Form.Item name="identity_id">
+            <Select defaultActiveFirstOption={false} placeholder="请选择已有视图">
+              {optionList.map((item: any) => {
+                return (
+                  <Option key={item.view_authority_id} value={item.view_authority_id}>
+                    {item.view_authority_text}
+                  </Option>
+                );
+              })}
+            </Select>
+          </Form.Item>
 
-      <Form.Item label="Password" name="password" rules={[{ required: true, message: "Please input your password!" }]}>
-        <Input.Password />
-      </Form.Item>
-
-      <Form.Item {...tailLayout} name="remember" valuePropName="checked">
-        <Checkbox>Remember me</Checkbox>
-      </Form.Item>
-
-      <Form.Item {...tailLayout}>
-        <Button type="primary" htmlType="submit">
-          Submit
-        </Button>
-      </Form.Item>
-    </Form>
+          <Form.Item>
+            <Button type="primary" htmlType="submit">
+              确定
+            </Button>
+            <Button htmlType="button" style={{ marginLeft: "20px" }} onClick={onReset}>
+              重置
+            </Button>
+          </Form.Item>
+        </Form>
+      </TabPane>
+    </Tabs>
   );
 }
 export default AuthorityView;
