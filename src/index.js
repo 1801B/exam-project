@@ -1,16 +1,16 @@
 /*
- * @Description:
- * @Author: 刘涵
- * @Date: 2020-10-19 10:01:13
- * @LastEditors: 刘涵
- * @LastEditTime: 2020-10-20 18:57:30
- * @FilePath: \react-mobx-ts\src\index.js
+ * @Descripttion : 
+ * @Autor        : 高泽康
+ * @Date         : 2020-10-20 10:37:13
+ * @LastEditTime : 2020-10-21 19:10:50
+ * @FilePath     : \src\index.js
  */
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
-import "antd/dist/antd.css";
-
+import 'antd/dist/antd.css';
+import "@/assets/css/index.scss";
+import "@/assets/css/gzk.scss";
 import App from "@/App.tsx";
 import { Provider } from "mobx-react";
 import store from "@/store";
