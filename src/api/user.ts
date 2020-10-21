@@ -1,3 +1,11 @@
+/*
+ * @Description: 
+ * @Author: 刘涵
+ * @Date: 2020-10-21 14:44:40
+ * @LastEditors: 刘涵
+ * @LastEditTime: 2020-10-21 20:58:58
+ * @FilePath: \counterplan\src\api\user.ts
+ */
 import request from "@/utils/request";
 import { User, UpUser, IdentityEdit, AuthorityApiEdit, OnsetIdentityApi, OnsetIdentityView } from "@/interface";
 
@@ -13,6 +21,26 @@ export function userData() {
 
 export function userIdentity() {
   const url = "/api/user/identity";
+  return request.get(url);
+}
+
+export function apioauth() {
+  const url = "/api/user/api_authority";
+  return request.get(url);
+}
+
+export function idnapi() {
+  const url = "/api/user/identity_api_authority_relation";
+  return request.get(url);
+}
+
+export function viewoth() {
+  const url = "/api/user/view_authority";
+  return request.get(url);
+}
+
+export function idnoth() {
+  const url = "/api/user/identity_view_authority_relation";
   return request.get(url);
 }
 
