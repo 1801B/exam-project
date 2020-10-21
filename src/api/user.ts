@@ -1,5 +1,5 @@
 import request from "@/utils/request";
-import { User, UpUser, IdentityEdit, AuthorityApiEdit, OnsetIdentityApi, OnsetIdentityView } from "@/interface";
+import { User, UpUser, IdentityEdit, AuthorityApiEdit, OnsetIdentityApi, OnsetIdentityView, AuthorityApiView } from "@/interface";
 
 interface Login {
   username: string;
@@ -80,4 +80,10 @@ export function _setIdentityApi(query: OnsetIdentityApi) {
 export function _setIdentityView(query: OnsetIdentityView) {
   const url = "/api/user/setIdentityView";
   return request.post(url, { ...query });
+}
+
+// 添加视图接口
+export function _authorityViewEdit(params: AuthorityApiView) {
+  const url = "/user/authorityView/edit";
+  return request.get(url, { params });
 }

@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Tabs, Form, Button, Select, notification } from "antd";
+import { Tabs, Form, Button, notification, Input } from "antd";
 import { CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
-import { _viewAuthority, _authorityApiEdit } from "@/api/user";
-import { AuthorityApiEdit } from "@/interface";
+import { _viewAuthority, _authorityViewEdit } from "@/api/user";
+import { AuthorityApiView } from "@/interface";
 
 const { TabPane } = Tabs;
-const { Option } = Select;
 
 function AuthorityView() {
   const [form] = Form.useForm();
@@ -18,12 +17,10 @@ function AuthorityView() {
     })();
   }, []);
 
-  useEffect(() => {
-    return;
-  }, [optionList]);
+  useEffect(() => {}, [optionList]);
 
-  const onFinish = async (values: AuthorityApiEdit) => {
-    let res = await _authorityApiEdit(values);
+  const onFinish = async (values: AuthorityApiView) => {
+    let res = await _authorityViewEdit(values);
     if (res.data.code !== 1) {
       openNotification({ code: res.data.code, msg: res.data.msg });
     } else {
@@ -49,16 +46,12 @@ function AuthorityView() {
     <Tabs type="card" className="tabs">
       <TabPane tab="添加视图接口权限" key="5">
         <Form form={form} name="add" initialValues={{ remember: true }} onFinish={onFinish}>
-          <Form.Item name="identity_id">
-            <Select defaultActiveFirstOption={false} placeholder="请选择已有视图">
-              {optionList.map((item: any) => {
-                return (
-                  <Option key={item.view_authority_id} value={item.view_authority_id}>
-                    {item.view_authority_text}
-                  </Option>
-                );
-              })}
-            </Select>
+          <Form.Item name="view_authority_text">
+            <Input placeholder="请输入视图" />
+          </Form.Item>
+
+          <Form.Item name="view_id">
+            <Input placeholder="请输入视图id" />
           </Form.Item>
 
           <Form.Item>
