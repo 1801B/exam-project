@@ -34,9 +34,9 @@ export default class Login extends Component {
                         <Checkbox>记住密码</Checkbox>
                         </Form.Item>
 
-                        <a className="login-form-forgot">
+                        <span className="login-form-forgot">
                         忘记密码
-                        </a>
+                        </span>
                     </Form.Item>
 
                     <Form.Item>

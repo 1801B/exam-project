@@ -2,28 +2,27 @@ import React, { Component,ComponentType } from 'react'
 import { Layout, Menu } from 'antd';
 import RouterView from '@/router/RouterView';
 import {Link} from 'react-router-dom'
-import {  AppstoreOutlined } from '@ant-design/icons';
+import { AppstoreOutlined } from '@ant-design/icons';
 import {observer,inject} from 'mobx-react';
-import axios from 'axios'
 
 const { SubMenu } = Menu;
-const { Header, Content, Footer, Sider } = Layout;
+const { Header, Content,Sider } = Layout;
 interface ICom {
     path: string,
     redirect?: string,
     component?: ComponentType,
     children?: ICom,
-    isHoldup?: boolean
+    isHoldup?: boolean,
 }
 interface Iprops {
-    routes: Array<ICom>
+    routes: Array<ICom>,
 }
 interface Istate {
     headText: string
 }
 
-@observer
 @inject(store => store)
+@observer
 export default class Testques extends Component<Iprops,Istate> {
     constructor (props:Iprops) {
         super(props);
@@ -32,12 +31,8 @@ export default class Testques extends Component<Iprops,Istate> {
         }
     }
     componentDidMount () {
-        axios.get('/api/exam/examType').then(res => {
-            console.log(res);
-        })
     }
     render() {
-        console.log(this.props);
         return (
             <div className="home">
                 <header className="header">
@@ -62,7 +57,7 @@ export default class Testques extends Component<Iprops,Istate> {
                     }}
                     >
                     <div className="logo" />
-                    <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']} onClick={({ item }) => this.changHeadText({ item })}>   
+                    <Menu theme="dark" mode="inline" onClick={({ item }) => this.changHeadText({ item })}>   
                         <SubMenu key="sub1" icon={<AppstoreOutlined />} title="试卷管理">
                             <Menu.Item key="1">
                                 <Link to="/home/testadd">添加试题</Link>
@@ -112,12 +107,9 @@ export default class Testques extends Component<Iprops,Istate> {
                     <Header className="site-layout-sub-header-background" style={{ padding: 0 }}>
                         {this.state.headText}
                     </Header>
-                    <Content style={{ margin: '24px 16px 0' }}>
-                        <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
-                            <RouterView routes={this.props.routes}/>
-                        </div>
+                    <Content style={{ margin: '24px 0 0 16px' }}>
+                        <RouterView routes={this.props.routes}/>
                     </Content>
-                    <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
                     </Layout>
                 </Layout>
             </div>
@@ -125,7 +117,7 @@ export default class Testques extends Component<Iprops,Istate> {
     }
     changHeadText ({ item }:any) {
         this.setState ({
-            headText: item.props.children[1]
+            headText: item.props.children[1].props.children
         })
     }
 }
