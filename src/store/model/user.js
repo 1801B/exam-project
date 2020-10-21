@@ -1,4 +1,5 @@
-import { observable, action, makeObservable } from "mobx";
+import { observable, action, makeObservable, runInAction } from "mobx";
+import { userData } from "@/api/user";
 
 class UserStore {
   constructor() {
@@ -7,10 +8,19 @@ class UserStore {
 
   @observable namespace = "user";
   @observable token = "";
+  @observable userData = [];
 
   @action getToken = (token) => {
     this.token = token;
     localStorage.setItem("token", token);
+  };
+
+  @action getUserData = async () => {
+    const result = await userData();
+    console.log(result);
+    runInAction(() => {
+      this.userData = result.data.data;
+    });
   };
 }
 
