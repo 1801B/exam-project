@@ -1,0 +1,41 @@
+.userAdd {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+}
+
+.tabs {
+    width: calc(100%/3);
+    height: 300px;
+    border: 1px solid #e3e3e3;
+    padding: 20px;
+    margin: 0 !important;
+    .ant-tabs-nav {
+        margin-bottom: 10px !important;
+        margin: 0;
+    }
+}
+
+.userTab {
+    width: calc(100%/3);
+    height: 300px;
+    border: 1px solid #e3e3e3;
+    padding: 20px;
+    .ant-input,
+    .ant-col,
+    .ant-col-16,
+    .ant-form-item-control,
+    .ant-form-item-control-input,
+    .ant-form-item-control-input-content {
+        width: 100% !important;
+    }
+}
+
+#up {
+    .ant-row,
+    .ant-form-item {
+        margin-bottom: 10px;
+    }
+}
