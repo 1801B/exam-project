@@ -8,6 +8,9 @@ interface Item {
   age: string;
   address: string;
 }
+interface IProps{
+  testPaper?:any
+}
 @inject("testPaper")
 @observer
 class Examlist extends Component<Item> {
@@ -114,8 +117,8 @@ class Examlist extends Component<Item> {
       {
         title: "操作",
         dataIndex: "operation",
-        render: (text: any, record: any) =>
-          this.state.dataSource.length<1 ? <span onClick={()=>{this.goDetail(text,record)}}>详情</span> : null,
+        render: (text: any, record: any,index:any) =>
+          this.state.dataSource.length<1 ? <span onClick={()=>{this.goDetail(text,record,index)}} style={{color:'skyblue'}}>详情</span> : null,
       },
     ],
     count: 2,
@@ -138,12 +141,17 @@ class Examlist extends Component<Item> {
   onFinishFailed = (errorInfo: any) => {
     console.log("Failed:", errorInfo);
   };
-  goDetail(text: any,record:any)
-  {
+  goDetail=(text: any,record:any,index:Number)=>{
+  
+    
       //跳转详情
-    //   (this.props as any).history.push({
-    //      pathname:'/'
-    //   })
+     
+      (this.props as any).history.push({
+         pathname:'/home/examDetail',
+         state:{
+                  key:record.key
+               }
+      })
     
   }
 }

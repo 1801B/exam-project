@@ -1,6 +1,5 @@
 import { observable, action, makeObservable, runInAction } from "mobx";
-import { _allExamType,_allCourseType,_allCourseList,_getQuestionType,_addTest } from "@/api/exam";
-
+import { _allExamType,_allCourseType,_allCourseList} from "@/api/exam";
 class TestPaper {
   constructor() {
     makeObservable(this);
@@ -31,10 +30,11 @@ class TestPaper {
   {
       const result=await  _allCourseList();
       runInAction(() => {
+        console.log(result.data.exam);
         result.data.exam.forEach((item)=>
       {
           this.realCourseList.push({
-             key:item.user_id,
+             key:item.exam_exam_id,
              name:item.title,
              grade:item.grade_name.map((ite) =>
              {
@@ -45,21 +45,9 @@ class TestPaper {
              end_time:item.end_time,
           })
       })
-      })
+   })
   }
-  // 题目类型接口
-  // @action getQuestionType=async ()=>
-  // {
-  //   const result=await  _getQuestionType();
-  //   runInAction(() => {
-  //     this.getQuestionList=result.data.data;
-  //   });
-  //   console.log(this.getQuestionList);
-  // }
-  @action addTest=async ()=>
-  {
-    const result=await  _addTest();
-  }
+
 }
 
 export default new TestPaper();

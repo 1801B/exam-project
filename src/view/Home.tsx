@@ -32,7 +32,6 @@ export default class Testques extends Component<Iprops, Istate> {
     };
   }
   render() {
-    console.log(this.props);
     return (
       <div className="home">
         <header className="header">
