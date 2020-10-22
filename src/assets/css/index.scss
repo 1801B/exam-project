@@ -199,6 +199,49 @@ body {
         margin-top: 20px;
     }
 }
+.ant-layout{
+  flex: 1;
+}
+.site-layout-sub-header-background{
+  background: #eee;
+  text-indent: 20px;
+}
+.site-page-header {
+border: 1px solid rgb(235, 237, 240);
+}
+.studentExamDetailMenu{
+width: 75%;
+height: auto;
+>.studentExamDetailItem{
+  width: 100%;
+  height: auto;
+  // max-height: 650px;
+  overflow: hidden;
+  img{
+    width: 100%;
+    height: auto;
+  }
+  >.studentExamDetailItemAnswer{
+    width: 100%;
+    max-height: 300px;
+    display: flex;
+    >div{
+      flex: 1;
+      overflow-y: scroll;
+      margin: 10px 20px;
+    }
+  }
+}
+}
+.studentExamDetailMark{
+width: 17%;
+height: 250px;
+position: fixed;
+// background:pink;
+right: 50px;
+top: 150px;
+font-size: 25px;
+}
 
 .usershow {
     width: 100%;

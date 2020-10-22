@@ -20,7 +20,7 @@ interface Iprops {
 }
 interface Istate {
   headText: string;
-  routerList: Array<any>;
+  viewList: Array<any>;
 }
 
 @inject((store) => store)
@@ -30,13 +30,15 @@ export default class Testques extends Component<Iprops, Istate> {
     super(props);
     this.state = {
       headText: "添加试题",
-      routerList: [],
+      viewList: [],
     };
   }
 
   async componentDidMount() {
     let res = await userViewList((this.props as any).user.userInfo.user_id ? (this.props as any).user.userInfo.user_id : JSON.parse(sessionStorage.getItem("userInfo") as string).user_id);
-    console.log(res.data);
+    this.setState({
+      viewList: res.data.data,
+    });
   }
 
   render() {
@@ -61,46 +63,66 @@ export default class Testques extends Component<Iprops, Istate> {
           >
             <div className="logo" />
             <Menu theme="dark" mode="inline" onClick={({ item }) => this.changHeadText({ item })}>
-              <SubMenu key="sub1" icon={<AppstoreOutlined />} title="试卷管理">
-                <Menu.Item key="1">
+              <SubMenu
+                key="sub1"
+                icon={<AppstoreOutlined />}
+                title="试卷管理"
+                style={{
+                  display:
+                    this.state.viewList.findIndex((item) => item.view_authority_text === "查看试题") || this.state.viewList.findIndex((item) => item.view_authority_text === "添加试题") !== -1 || this.state.viewList.findIndex((item) => item.view_authority_text === "试题分类") !== -1
+                      ? "block"
+                      : "none",
+                }}
+              >
+                <Menu.Item key="1" style={{ display: this.state.viewList.findIndex((item) => item.view_authority_text === "添加试题") !== -1 ? "block" : "none" }}>
                   <Link to="/home/testadd">添加试题</Link>
                 </Menu.Item>
-                <Menu.Item key="2">
+                <Menu.Item key="2" style={{ display: this.state.viewList.findIndex((item) => item.view_authority_text === "试题分类") !== -1 ? "block" : "none" }}>
                   <Link to="/home/testlist">试题分类</Link>
                 </Menu.Item>
-                <Menu.Item key="3">
+                <Menu.Item key="3" style={{ display: this.state.viewList.findIndex((item) => item.view_authority_text === "查看试题") !== -1 ? "block" : "none" }}>
                   <Link to="/home/testlook">查看试题</Link>
                 </Menu.Item>
               </SubMenu>
-              <SubMenu key="sub2" icon={<AppstoreOutlined />} title="用户管理">
-                <Menu.Item key="4">
+              <SubMenu key="sub2" icon={<AppstoreOutlined />} title="用户管理" style={{ display: this.state.viewList.findIndex((item) => item.view_authority_text === "添加用户") !== -1 || this.state.viewList.findIndex((item) => item.view_authority_text === "用户展示") !== -1 ? "block" : "none" }}>
+                <Menu.Item key="4" style={{ display: this.state.viewList.findIndex((item) => item.view_authority_text === "添加用户") !== -1 ? "block" : "none" }}>
                   <Link to="/home/useradd">添加用户</Link>
                 </Menu.Item>
-                <Menu.Item key="5">
+                <Menu.Item key="5" style={{ display: this.state.viewList.findIndex((item) => item.view_authority_text === "用户展示") !== -1 ? "block" : "none" }}>
                   <Link to="/home/usershow">用户展示</Link>
                 </Menu.Item>
               </SubMenu>
-              <SubMenu key="sub3" icon={<AppstoreOutlined />} title="考试管理">
-                <Menu.Item key="6">
+              <SubMenu key="sub3" icon={<AppstoreOutlined />} title="考试管理" style={{ display: this.state.viewList.findIndex((item) => item.view_authority_text === "试卷列表") !== -1 || this.state.viewList.findIndex((item) => item.view_authority_text === "添加考试") !== -1 ? "block" : "none" }}>
+                <Menu.Item key="6" style={{ display: this.state.viewList.findIndex((item) => item.view_authority_text === "添加考试") !== -1 ? "block" : "none" }}>
                   <Link to="/home/examadd">添加考试</Link>
                 </Menu.Item>
-                <Menu.Item key="7">
-                  <Link to="/home/examlist">考试列表</Link>
+                <Menu.Item key="7" style={{ display: this.state.viewList.findIndex((item) => item.view_authority_text === "试卷列表") !== -1 ? "block" : "none" }}>
+                  <Link to="/home/examlist">试卷列表</Link>
                 </Menu.Item>
               </SubMenu>
-              <SubMenu key="sub4" icon={<AppstoreOutlined />} title="班级管理">
-                <Menu.Item key="8">
+              <SubMenu
+                key="sub4"
+                icon={<AppstoreOutlined />}
+                title="班级管理"
+                style={{
+                  display:
+                    this.state.viewList.findIndex((item) => item.view_authority_text === "学生管理") !== -1 || this.state.viewList.findIndex((item) => item.view_authority_text === "教室管理") !== -1 || this.state.viewList.findIndex((item) => item.view_authority_text === "班级管理") !== -1
+                      ? "block"
+                      : "none",
+                }}
+              >
+                <Menu.Item key="8" style={{ display: this.state.viewList.findIndex((item) => item.view_authority_text === "班级管理") !== -1 ? "block" : "none" }}>
                   <Link to="/home/class">班级管理</Link>
                 </Menu.Item>
-                <Menu.Item key="9">
+                <Menu.Item key="9" style={{ display: this.state.viewList.findIndex((item) => item.view_authority_text === "教室管理") !== -1 ? "block" : "none" }}>
                   <Link to="/home/classroom">教室管理</Link>
                 </Menu.Item>
-                <Menu.Item key="10">
+                <Menu.Item key="10" style={{ display: this.state.viewList.findIndex((item) => item.view_authority_text === "学生管理") !== -1 ? "block" : "none" }}>
                   <Link to="/home/student">学生管理</Link>
                 </Menu.Item>
               </SubMenu>
-              <SubMenu key="sub5" icon={<AppstoreOutlined />} title="阅卷管理">
-                <Menu.Item key="11">
+              <SubMenu key="sub5" icon={<AppstoreOutlined />} title="阅卷管理" style={{ display: this.state.viewList.findIndex((item) => item.view_authority_text === "待批班级") !== -1 ? "block" : "none" }}>
+                <Menu.Item key="11" style={{ display: this.state.viewList.findIndex((item) => item.view_authority_text === "待批班级") !== -1 ? "block" : "none" }}>
                   <Link to="/home/waitclass">待批班级</Link>
                 </Menu.Item>
               </SubMenu>

@@ -18,7 +18,6 @@ import store from "@/store";
 import "@/assets/css/login.scss";
 import "@/assets/css/userAdd.scss";
 
-console.log(store);
 ReactDOM.render(
   <Provider {...store}>
     <BrowserRouter>

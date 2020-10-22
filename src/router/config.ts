@@ -30,7 +30,11 @@ import Class from "@/view/home/Class";
 import Classroom from "@/view/home/Classroom";
 import Student from "@/view/home/Student";
 
-import Waitclass from "@/view/home/Waitclass";
+
+
+import Waitclass from '@/view/home/Waitclass'
+import Waitclassmate from '@/view/home/Waitclassmate'
+import StudentExamDetail from '@/view/home/StudentExamDetail'
 
 // 引入3级路由
 import Apioth from "@/view/home/usershow/Apioth";
@@ -163,6 +167,16 @@ const router = [
       name: 'ExamNew',
       component: ExamNew
   },
+  {
+    path: '/home/waitclassmate',
+    name: 'Waitclassmate',
+    component: Waitclassmate
+},
+{
+    path:'/home/studentexamdetail/:id',
+    name:'StudentExamDetail',
+    component: StudentExamDetail
+}
     ],
   },
   {
