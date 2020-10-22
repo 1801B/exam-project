@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {_grade,_class,_subject,_addGrade,_del_grade} from '@/api/manger'
-import "antd/dist/antd"
 import "./class.css"
+import 'antd/dist/antd.css';
 import {Layout, Button,  Modal, Select, Form, Input,} from "antd";
 import { FormInstance } from '_antd@4.7.2@antd/lib/form/Form';
 import Change from "./class/change"
@@ -130,12 +130,13 @@ export default class Class extends Component<Iprops,Istate>{
       };
        onFinish = (values: any) => {
         this.addGrade(values)
-        console.log(values)
+    // console.log(values)
         this.setState({
             visible: false,
           });
       };
       onReset = () => {
+        
         this.formRef.current?.resetFields();
         
       };
@@ -166,7 +167,7 @@ export default class Class extends Component<Iprops,Istate>{
                     </Button>
 
                     <Modal
-                     title="Basic Modal"
+                     title="添加试题"
                      visible={this.state.visible}
                      onOk={this.handleOk}
                      onCancel={this.handleCancel}
@@ -260,9 +261,9 @@ export default class Class extends Component<Iprops,Istate>{
           <Button htmlType="button" onClick={this.onReset}>
             Reset
           </Button>
-          <Button type="link" htmlType="button" onClick={this.onFill}>
+          {/* <Button type="link" htmlType="button" onClick={this.onFill}>
             Fill form
-          </Button>
+          </Button> */}
         </Form.Item>
       </Form>
                     </Modal>
@@ -276,16 +277,16 @@ export default class Class extends Component<Iprops,Istate>{
                     </p>
                     <div >
                         {
-                            this.state.list.map((item:any,index)=>{
+                            this.state.list.map((item:any)=>{
                                return (
-                                   <p className='box'>
-                                       <span key ={item.room_id}>
+                                   <p className='box' >
+                                       <span >
                                            {item.grade_name}
                                        </span>
                                        <span>{item.subject_text}</span>
                                        <span>{item.room_text}</span>
                                        <span className="font">
-                                            <span><Change  change={this.change} id={item.grade_id} list={this.state.list} subject={this.state.subject} room ={this.state.room} /></span>
+                                            <span><Change key ={item.room_id} change={this.change} id={item.grade_id} list={this.state.list} subject={this.state.subject} room ={this.state.room} /></span>
                                             |
                                             <span onClick={()=>{this.del(item.grade_id) }}>删除</span>
                                         </span>

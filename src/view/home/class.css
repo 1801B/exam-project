@@ -14,6 +14,10 @@
 
 .abc {
     height: 100%;
+   
+}
+.ant-row{
+    width: 100%;
 }
 
 .bigbox {
@@ -44,4 +48,33 @@
 
 .font {
     color: #1890ff;
+}
+.ant-spin-nested-loading{
+    width: 100%;
+}
+.ant-spin-container{
+    width: 100%;
+    height: 100%;
+}
+.ant-table-tbody{
+    width: 100%;
+}
+.ant-table-container{
+    width: 100%;
+}
+.ant-table{
+    width: 100%;
+}
+
+.site-layout-background{
+    width: 100%;
+}
+.ant-table-thead{
+    width: 100%;
+}
+.ant-row{
+    width: 100%;
+}
+.ant-modal-footer  {
+    display: none;
 }

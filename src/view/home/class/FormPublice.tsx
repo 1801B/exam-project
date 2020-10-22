@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import 'antd/dist/antd.css';
-import { Form, Input, Button, Select } from 'antd';
-import {_class,_subject,_updata} from '@/api/manger'
+import { Form, Input, Button, Select, } from 'antd';
+import {_class,_subject, _grade,_updata} from '@/api/manger'
+//
 import { FormInstance } from 'antd/lib/form/Form';
 const { Option } = Select;
 const layout = {
@@ -27,7 +28,8 @@ interface Iprops{
 class FormPublice extends Component<Iprops>{
   state={
     subject:[],
-    room:[]
+    room:[],
+    list:[]
   }
  
     formRef = React.createRef<FormInstance>();
@@ -37,7 +39,9 @@ class FormPublice extends Component<Iprops>{
     });
   };
   onFinish = (values: any) => {
-    console.log(values);
+
+    console.log(values.subject_id);
+
     this.updata(values)
   };
   onReset = () => {
@@ -49,16 +53,42 @@ class FormPublice extends Component<Iprops>{
       gender: 'male',
     });
   };
+  async grade(){
+    let res =   await _grade()
+    this.setState({
+        list:res.data.data
+    })
+    console.log(this.state.list)
+  }
   
     
   
   componentDidMount(){
     this.class()
     this.subject()
-    
+    this.grade()
   }
-  async updata(values:object){
-    await _updata(values)
+  async updata(values:any){
+    console.log(this.state,values)
+    let grade=this.state.list.filter((item:any)=>{
+      return  item.grade_name===values.grade_name;
+    })
+    let room=this.state.room.filter((item:any)=>{
+      return  item.room_text===values.room_id;
+    })
+    let subject=this.state.subject.filter((item:any)=>{
+      return  item.subject_text===values.subject_id;
+    })
+    let room_id = (room as any)[0].room_id
+    let subject_id = (subject as any)[0].subject_id
+    let grade_id=(grade as any)[0].grade_id
+    console.log(grade_id,subject_id,room_id)
+    // console.log('*******');
+    // console.log(values);
+    // //{grade_name: "1611B", room_id: "34303", subject_id: "javaScript下"}
+    // console.log('*******');
+
+    await _updata(grade_id,subject_id,grade_id)
   }
   async class(){
     let res = await _class()
@@ -108,14 +138,14 @@ class FormPublice extends Component<Iprops>{
           >
             {
               this.state.room.map((item:any)=>{
-                 return <Option value={item.room_text}>{item.room_text}</Option>
+                 return <Option value={item.room_text} key ={item.room_id}>{item.room_text}</Option>
               })
             }
 
           </Select>
         </Form.Item>
         <Form.Item
-          name="subject_id "
+          name="subject_id"
           label="课程"
           rules={[
             {
@@ -130,7 +160,7 @@ class FormPublice extends Component<Iprops>{
           >
            {
               this.state.subject.map((item:any)=>{
-                 return <Option value={item.subject_text}>{item.subject_text}</Option>
+                 return <Option value={item.subject_text} key ={item.room_id}>{item.subject_text}</Option>
               })
             }
           </Select>
@@ -162,9 +192,7 @@ class FormPublice extends Component<Iprops>{
           <Button htmlType="button" onClick={this.onReset}>
             Reset
           </Button>
-          <Button type="link" htmlType="button" onClick={this.onFill}>
-            Fill form
-          </Button>
+  
         </Form.Item>
       </Form>
                 

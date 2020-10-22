@@ -32,14 +32,13 @@ export default class change extends Component<Iprops> {
     });
   };
   handleOk = (e: any) => {
-    console.log(e);
+
     this.setState({
       visible: false,
     });
   };
 
   handleCancel = (e: any) => {
-    console.log(e);
     this.setState({
       visible: false,
     });
@@ -57,7 +56,11 @@ export default class change extends Component<Iprops> {
           onOk={this.handleOk}
           onCancel={this.handleCancel}
         >
-         <FormPublice list={this.state.list} room = {this.props.room}  subject={this.props.subject}/>
+
+
+
+          
+         <FormPublice list={this.state.list} room = {this.props.room}    subject={this.props.subject}/>
         </Modal>
             </span>
         )
