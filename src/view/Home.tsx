@@ -121,9 +121,19 @@ export default class Testques extends Component<Iprops, Istate> {
                   <Link to="/home/student">学生管理</Link>
                 </Menu.Item>
               </SubMenu>
-              <SubMenu key="sub5" icon={<AppstoreOutlined />} title="阅卷管理" style={{ display: this.state.viewList.findIndex((item) => item.view_authority_text === "待批班级") !== -1 ? "block" : "none" }}>
-                <Menu.Item key="11" style={{ display: this.state.viewList.findIndex((item) => item.view_authority_text === "待批班级") !== -1 ? "block" : "none" }}>
+              <SubMenu 
+                  key="sub5" 
+                  icon={<AppstoreOutlined />} 
+                  title="阅卷管理" 
+                  style={{ display: 
+                  this.state.viewList.findIndex((item) => item.view_authority_text === "批卷班级") !== -1 ? "block" : "none" }}>
+                <Menu.Item key="11" style={{ display: this.state.viewList.findIndex((item) => item.view_authority_text === "批卷班级") !== -1 ? "block" : "none" }}>
                   <Link to="/home/waitclass">待批班级</Link>
+                </Menu.Item>
+              </SubMenu>
+              <SubMenu key="sub6" icon={<AppstoreOutlined />} title="图表管理">
+                <Menu.Item key="12">
+                  <Link to="/home/echarts">1801B</Link>
                 </Menu.Item>
               </SubMenu>
             </Menu>

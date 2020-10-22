@@ -2,7 +2,7 @@
  * @Descripttion : 
  * @Autor        : 高泽康
  * @Date         : 2020-10-20 20:08:19
- * @LastEditTime : 2020-10-22 15:06:06
+ * @LastEditTime : 2020-10-22 16:53:19
  * @FilePath     : \src\api\apiss.ts
  */
 import request from '../utils/request'
@@ -44,11 +44,22 @@ export function _chaid(questions_id:string){
 }
 
 export function _tianjia(exam_id:string,questions_answer:string
-    ,questions_stem:string,questions_type_id:string,subject_id:string,
+    ,questions_stem:string,questions_type_id:string,subject_id:string,type:string,
     title:string){
-    const url ="/api/exam/questions/update";
+    const url ="/api/exam/questions";
     const user_id=JSON.parse(sessionStorage.getItem('userInfo') as string).user_id;
-    return request.put(url,{exam_id,questions_answer,
-        questions_stem,questions_type_id,subject_id,title,user_id})
-    
+    return request.post(url,{exam_id,
+        type,
+        questions_answer,
+        questions_stem,
+        questions_type_id,
+        subject_id,
+        title,
+        user_id})
+}
+
+
+export function _xiugai(params:any){
+    const url ="/api/exam/questions/update";
+    return request.put(url,params)
 }

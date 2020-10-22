@@ -2,9 +2,9 @@
  * @Description:
  * @Author: 刘涵
  * @Date: 2020-10-19 10:37:01
- * @LastEditors  : Please set LastEditors
- * @LastEditTime : 2020-10-22 15:32:08
- * @FilePath     : \src\router\config.ts
+ * @LastEditors: 刘涵
+ * @LastEditTime: 2020-10-22 18:37:00
+ * @FilePath: \counterplan\src\router\config.ts
  */
 import Home from "@/view/Home";
 import Detail from "@/view/Detail";
@@ -35,6 +35,8 @@ import Student from "@/view/home/Student";
 import Waitclass from '@/view/home/Waitclass'
 import Waitclassmate from '@/view/home/Waitclassmate'
 import StudentExamDetail from '@/view/home/StudentExamDetail'
+
+import Echarts from "@/view/home/Echarts"
 
 // 引入3级路由
 import Apioth from "@/view/home/usershow/Apioth";
@@ -166,7 +168,12 @@ const router = [
       path: '/home/examNew',
       name: 'ExamNew',
       component: ExamNew
-  },
+    },
+    {
+      path: '/home/echarts',
+      name: 'Echarts',
+      component: Echarts
+    },
   {
     path: '/home/waitclassmate',
     name: 'Waitclassmate',
