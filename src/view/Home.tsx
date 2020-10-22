@@ -39,9 +39,6 @@ export default class Testques extends Component<Iprops, Istate> {
     this.setState({
       viewList: res.data.data,
     });
-    let aaa = res.data.data.filter((item: any) => {
-      return item.view_authority_text === "登录";
-    });
   }
 
   render() {
