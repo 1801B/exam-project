@@ -1,0 +1,214 @@
+*{
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+html,body{
+  width: 100%;
+  height: 100%;
+}
+#root{
+  width: 100%;
+  height: 100%;
+}
+.App{
+  width: 100%;
+  height: 100%;
+}
+.home{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  .header{
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    img{
+      width: 120px;
+      height: 30px;
+    }
+    dl{
+      width: auto;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      margin: 0;
+      dd{
+        width: 30px;
+        height: 30px;
+        background: red;
+        border-radius: 50%;
+        margin: 0;
+      }
+      dt{
+        margin-left: 5px;
+        line-height: 30px;
+      }
+    }
+  }
+  .ant-layout{
+    flex: 1;
+  }
+  .site-layout-sub-header-background{
+    background: #eee;
+    text-indent: 20px;
+  }
+  .exam_big
+{
+  width: 100%;
+  height: 800px;
+  list-style-type: none;
+  .exam_small
+  {
+    width:90%;
+    height: 800px;
+    background-color: #fff;
+    margin:0 auto;
+    overflow: hidden;
+  }
+}
+}
+*{
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+.dialog
+{
+  width: 50%;
+  height: 100%;
+  background-color: #fff;
+  margin-right: 0;
+  display: none;
+}
+.mAdd
+{
+  width: 100%;
+  height: 100%;
+  list-style-type: none;
+  .content
+  {
+    width:95%;
+    height: 100%;
+    background-color: #fff;
+    margin:0 auto;
+  }
+ 
+  .ant-form-item-control-input-content{
+    width: 100%;
+    display: flex;
+  }
+}
+.editable-cell {
+  position: relative;
+}
+
+.editable-cell-value-wrap {
+  padding: 5px 12px;
+  cursor: pointer;
+}
+
+.editable-row:hover .editable-cell-value-wrap {
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  padding: 4px 11px;
+}
+
+[data-theme='dark'] .editable-row:hover .editable-cell-value-wrap {
+  border: 1px solid #434343;
+}
+.big-test
+{
+  width: 100%;
+  height: 100%;
+  list-style-type: none;
+  >h3
+  {
+    font-size:25px;
+  }
+  .test-header
+  {
+     width:100%;
+     margin:0 auto;
+     background-color: #fff;
+     height: 120px;
+     margin:0 auto;
+     text-align: center;
+     margin-bottom: 30px;
+  }
+}
+.model
+{
+  width: 60%;
+ height: 100%;
+ background-color: #fff;
+ position:fixed;
+ right: 0;
+ top:0;
+ overflow:scroll;
+
+}
+.active
+{
+  background-color: #00f;
+  color: #fff;
+}
+.allTest
+{
+  width: 100%;
+  height: 100%;
+  list-style-type: none;
+  overflow: scroll;
+  dl
+  {
+    width: 100%;
+    height: 150px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    dt
+    {
+      width: 80%;
+      height: 100%;
+    }
+  }
+}
+.content
+{
+  width: 98%;
+  height: 100%;
+  list-style-type: none;
+  background-color: #fff;
+  margin:0 auto;
+  >div
+  {
+    border:1px solid #ccc;
+    margin-top:20px;
+
+  }
+}
+.usershow{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  .title{
+    width: 100%;
+    height: 60px;
+    font-size: 28px;
+    line-height: 60px;
+  }
+  .view_3{
+    flex: 1;
+  }
+}

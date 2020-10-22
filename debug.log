@@ -1,0 +1,2 @@
+[1020/130715.079:ERROR:directory_reader_win.cc(43)] FindFirstFile: 系统找不到指定的路径。 (0x3)
+[1020/190411.516:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\12785\AppData\Local\Microsoft\Edge\User Data\Crashpad\attachments\fa79ac81-bc81-448e-a839-7b6de6eedf9e: 系统找不到指定的路径。 (0x3)
