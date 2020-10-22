@@ -8,6 +8,7 @@
  */
 import Home from '@/view/Home'
 import Detail from '@/view/Detail'
+import Login from '@/view/Login'
 
 // 引入2级路由
 import Testadd from '@/view/home/Testadd'
@@ -25,6 +26,9 @@ import Classroom from '@/view/home/Classroom'
 import Student from '@/view/home/Student'
 
 import Waitclass from '@/view/home/Waitclass'
+import Waitclassmate from '@/view/home/Waitclassmate'
+import StudentExamDetail from '@/view/home/StudentExamDetail'
+
 
 const router = [
     {
@@ -95,6 +99,16 @@ const router = [
                 path: '/home/waitclass',
                 name: 'Waitclass',
                 component: Waitclass
+            },
+            {
+                path: '/home/waitclassmate',
+                name: 'Waitclassmate',
+                component: Waitclassmate
+            },
+            {
+                path:'/home/studentexamdetail/:id',
+                name:'StudentExamDetail',
+                component: StudentExamDetail
             }
         ]
     },
@@ -102,6 +116,11 @@ const router = [
         path: '/detail',
         name: 'Detail',
         component: Detail
+    },
+    {
+        path:'/login',
+        name:'Login',
+        component:Login
     }
 ];
 

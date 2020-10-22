@@ -4,7 +4,7 @@ import RouterView from '@/router/RouterView';
 import {Link} from 'react-router-dom'
 import {  AppstoreOutlined } from '@ant-design/icons';
 import {observer,inject} from 'mobx-react';
-import axios from 'axios'
+// import axios from 'axios'
 
 const { SubMenu } = Menu;
 const { Header, Content, Footer, Sider } = Layout;
@@ -32,12 +32,11 @@ export default class Testques extends Component<Iprops,Istate> {
         }
     }
     componentDidMount () {
-        axios.get('/api/exam/examType').then(res => {
-            console.log(res);
-        })
+        // axios.get('/api/exam/examType').then(res => {
+        //     console.log(res);
+        // })
     }
     render() {
-        console.log(this.props);
         return (
             <div className="home">
                 <header className="header">
@@ -117,7 +116,7 @@ export default class Testques extends Component<Iprops,Istate> {
                             <RouterView routes={this.props.routes}/>
                         </div>
                     </Content>
-                    <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+
                     </Layout>
                 </Layout>
             </div>

@@ -7,7 +7,6 @@ import App from "@/App.tsx";
 import { Provider } from "mobx-react";
 import store from "@/store";
 
-console.log(store);
 ReactDOM.render(
     <Provider {...store}>
       <BrowserRouter>
