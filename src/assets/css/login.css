@@ -1,17 +1,25 @@
 .login {
   width: 100%;
   height: 100%;
-  background: url(http://172.16.10.111/exam/resources/images/exam_student.jpg) no-repeat;
+  background: url(http://qiniu.bimg.top/bing/2020-09-07/OHR.BleistifteFaber_ZH-CN7204563488_UHD.jpg&bg.jpg) no-repeat;
   background-size: 100% 100%;
 }
 
 .login-main {
   width: 300px;
   height: 300px;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.7);
   padding: 30px;
   position: absolute;
   top: 50%;
   right: 10%;
   transform: translateY(-50%);
+}
+
+.login-main .ant-input-affix-wrapper {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.login-main .ant-input {
+  background: rgba(255, 255, 255, 0.5);
 }

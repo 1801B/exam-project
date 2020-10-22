@@ -1,5 +1,5 @@
 import { observable, action, makeObservable, runInAction } from "mobx";
-import { _allExamType, _allCourseType, _allCourseList } from "@/api/exam";
+import { _allExamType,_allCourseType,_allCourseList} from "@/api/exam";
 class TestPaper {
   constructor() {
     makeObservable(this);
@@ -7,9 +7,9 @@ class TestPaper {
   namespace = "testPaper";
   @observable examType = [];
   @observable courseType = [];
-  @observable courseList = [];
-  @observable realCourseList = [];
-  @observable getQuestionList = [];
+  @observable courseList=[];
+  @observable realCourseList=[];
+  @observable getQuestionList=[];
   //试卷类型
   @action getExamType = async () => {
     const result = await _allExamType();
