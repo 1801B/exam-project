@@ -2,7 +2,7 @@
  * @Descripttion :
  * @Autor        : 高泽康
  * @Date         : 2020-10-20 10:37:13
- * @LastEditTime : 2020-10-22 15:44:29
+ * @LastEditTime : 2020-10-22 16:10:34
  * @FilePath     : \src\view\home\Testadd.tsx
  */
 
@@ -100,9 +100,9 @@ export default class Testques extends Component<any, State> {
         //获取他的文本节点 
         let questions_answer = (editor as E).txt.text();
         let questions_stem = (editor1 as E).txt.text();
-        // console.log(exam_id, subject_id, this.state.tg, questions_type_id, (editor as E).txt.text(), (editor1 as E).txt.text())
-        let res = await _tianjia(title,exam_id,subject_id,questions_type_id,(questions_answer as string),(questions_stem as string))
-        console.log(res)
+        let type = "addQuestions/addQuestions"
+        let res = await _tianjia(title, exam_id, type, subject_id, questions_type_id, (questions_answer as string), (questions_stem as string))
+        alert(res.data.msg)
     }
     render() {
         return (

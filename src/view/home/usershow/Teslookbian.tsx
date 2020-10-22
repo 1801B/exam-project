@@ -1,22 +1,173 @@
+
+/*
+ * @Descripttion :
+ * @Autor        : 高泽康
+ * @Date         : 2020-10-20 10:37:13
+ * @LastEditTime : 2020-10-22 16:59:03
+ * @FilePath     : \src\view\home\usershow\Teslookbian.tsx
+ */
+
 import React, { Component } from 'react'
-interface Iprops{
-    //assgin记录浏览历史，所以可以实现后退功能
-    //replace不记录浏览历史替换当前页，不能后退
-    //reload()刷新页面,里面如果参数为true，强制刷新ctrl+f5
+import { _room, _grade, _zhou, _xiugai } from "../../../api/apiss"
+//映入wangeditor 插件 
+import E from "wangeditor"
+interface zhouDatas {
+    questions_type_id: string,
+    questions_type_text: string,
+    questions_type_sort: number,
+}
+interface tiDataS {
+    exam_id: string,
+    exam_name: string
+}
+interface xiuDataS {
+    subject_text: string,
+    subject_id: string,
+    index: number,
+}
+interface State {
+    list: Array<any>;
+    tg: string
+    zhouData: Array<zhouDatas>
+    tiData: Array<tiDataS>
+    xiuData: Array<xiuDataS>
     location:any
+    questions_id:string
 }
-interface Istate {
-    location: any
-}
-export default class Teslookbian extends Component<Iprops, Istate> {
+
+let editor: E | null = null
+//声明他一下
+let editor1: E | null = null
+export default class Testques extends Component<any, State> {
+
+    constructor(props: any) {
+        super(props)
+    }   
     state = {
-        location: []
+        list: [],
+        location: [],
+        tg: '',
+        zhouData: [],
+        tiData: [],
+        xiuData: [],
+        questions_id:""
+
+    }
+    xiala1 = ""
+    xiala2 = ""
+    xiala3 = ""
+    componentDidMount() {
+        //在挂载前找到他
+        editor = new E("#box1")
+        //然后实列他
+        editor1 = new E("#box2")
+        //创作一个对象
+        editor.create()
+        editor1.create()
+        this.getList()
+        this.zhouList()
+        this.leiList()
+        console.log(this.props.location.state.obj)
+        this.setState({
+            tg:this.props.location.state.obj[0].title
+        })
+        this.setState({
+            questions_id:this.props.location.state.obj[0].questions_id
+        })
+    }
+    async getList() {
+        let res = await _zhou()
+        //周考
+        console.log(res.data.data)
+        this.setState({
+            zhouData: res.data.data
+        })
+    }
+    async zhouList() {
+        let res = await _grade();
+        //题型
+        console.log(res.data.data)
+        this.setState({
+            tiData: res.data.data
+        })
+    }
+    async leiList() {
+        let res = await _room();
+        //课程
+        console.log(res.data.data)
+        this.setState({
+            xiuData: res.data.data
+        })
+    }
+    inputChange(e: InputEvent) {
+        let el = (e.target as any).value;
+        this.setState({
+            tg: el
+        })
+    }
+    async getInputValue() {
+        let title = this.state.tg
+        let exam_id = (this.xiala1 as any).value;
+        let subject_id = (this.xiala2 as any).value;
+        let questions_type_id = (this.xiala3 as any).value;
+        let questions_id =this.state.questions_id
+        //获取他的文本节点 
+        let questions_answer = (editor as E).txt.text();
+        let questions_stem = (editor1 as E).txt.text();
+         let res = await _xiugai({
+            title,
+             exam_id, 
+             subject_id, 
+            questions_type_id, 
+            questions_answer, 
+            questions_id,
+            questions_stem});
+            console.log(res)
+        alert(res.data.msg)
+        
     }
     render() {
-        console.log(this.props.location.state.obj)
         return (
-            <div>
-                编辑
+            <div className="Testadd">
+                <p>题目信息</p>
+                <p>题干</p>
+                <p> <input value={this.state.tg} onChange={(e) => this.inputChange(e as any)}></input> </p>
+
+                <p>题目主题</p>
+                <div id="box1"></div>
+                <p>
+                    请选择考试类型： <select className="xiala1" ref={(el) => { (this.xiala1 as any) = el }}>
+                        {
+                            this.state.zhouData.map((item: tiDataS, index: number) => {
+                                return (
+                                    <option value={item.exam_id} key={index}>{item.exam_name}</option>
+                                )
+                            })
+                        }
+                    </select>
+                </p>
+                <p> 请选择课程类型：  <select className="xiala2" ref={(el) => { (this.xiala2 as any) = el }}>
+                    {
+                        this.state.xiuData.map((item: xiuDataS, index: number) => {
+                            return (
+                                <option value={item.subject_id} key={index}>{item.subject_text}</option>
+                            )
+                        })
+                    }
+                </select>
+                </p>
+                <p> 请选择题目类型：  <select className="xiala3" ref={(el) => { (this.xiala3 as any) = el }}>
+                    {
+                        this.state.tiData.map((item: zhouDatas, index: number) => {
+                            return (
+                                <option value={item.questions_type_id} key={index}>{item.questions_type_text}</option>
+                            )
+                        })
+                    }
+                </select>
+                </p>
+                <div id="box2"></div>
+                <p><button onClick={() => this.getInputValue()}>提交</button></p>
             </div>
         )
     }
