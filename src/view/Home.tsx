@@ -4,10 +4,6 @@ import RouterView from "@/router/RouterView";
 import { Link } from "react-router-dom";
 import { AppstoreOutlined } from "@ant-design/icons";
 import { observer, inject } from "mobx-react";
-<<<<<<< HEAD
-
-=======
->>>>>>> a14afed227e6efb7b75a9fa0f1d61dc9110f03a6
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
@@ -27,10 +23,6 @@ interface Istate {
 
 @inject((store) => store)
 @observer
-<<<<<<< HEAD
-@inject((store) => store)
-=======
->>>>>>> a14afed227e6efb7b75a9fa0f1d61dc9110f03a6
 export default class Testques extends Component<Iprops, Istate> {
   constructor(props: Iprops) {
     super(props);
@@ -38,22 +30,15 @@ export default class Testques extends Component<Iprops, Istate> {
       headText: "添加试题",
     };
   }
-<<<<<<< HEAD
-=======
   componentDidMount() {}
->>>>>>> a14afed227e6efb7b75a9fa0f1d61dc9110f03a6
   render() {
     return (
       <div className="home">
         <header className="header">
-<<<<<<< HEAD
           <img
             src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1551624718911&di=4a7004f8d71bd8da84d4eadf1b59e689&imgtype=0&src=http%3A%2F%2Fimg105.job1001.com%2Fupload%2Falbum%2F2014-10-15%2F1413365052_95IE3msH.jpg"
             alt=""
           />
-=======
-          <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1551624718911&di=4a7004f8d71bd8da84d4eadf1b59e689&imgtype=0&src=http%3A%2F%2Fimg105.job1001.com%2Fupload%2Falbum%2F2014-10-15%2F1413365052_95IE3msH.jpg" alt="" />
->>>>>>> a14afed227e6efb7b75a9fa0f1d61dc9110f03a6
           <dl>
             <dd></dd>
             <dt>刘涵</dt>
@@ -70,16 +55,7 @@ export default class Testques extends Component<Iprops, Istate> {
             }}
           >
             <div className="logo" />
-<<<<<<< HEAD
-            <Menu
-              theme="dark"
-              mode="inline"
-              defaultSelectedKeys={["4"]}
-              onClick={({ item }) => this.changHeadText({ item })}
-            >
-=======
             <Menu theme="dark" mode="inline" onClick={({ item }) => this.changHeadText({ item })}>
->>>>>>> a14afed227e6efb7b75a9fa0f1d61dc9110f03a6
               <SubMenu key="sub1" icon={<AppstoreOutlined />} title="试卷管理">
                 <Menu.Item key="1">
                   <Link to="/home/testadd">添加试题</Link>
@@ -126,7 +102,6 @@ export default class Testques extends Component<Iprops, Istate> {
             </Menu>
           </Sider>
           <Layout>
-<<<<<<< HEAD
             <Header
               className="site-layout-sub-header-background"
               style={{ padding: 0 }}
@@ -141,17 +116,6 @@ export default class Testques extends Component<Iprops, Istate> {
                 <RouterView routes={this.props.routes} />
               </div>
             </Content>
-            <Footer style={{ textAlign: "center" }}>
-              Ant Design ©2018 Created by Ant UED
-            </Footer>
-=======
-            <Header className="site-layout-sub-header-background" style={{ padding: 0 }}>
-              {this.state.headText}
-            </Header>
-            <Content style={{ margin: "24px 0 0 16px" }}>
-              <RouterView routes={this.props.routes} />
-            </Content>
->>>>>>> a14afed227e6efb7b75a9fa0f1d61dc9110f03a6
           </Layout>
         </Layout>
       </div>
@@ -159,11 +123,7 @@ export default class Testques extends Component<Iprops, Istate> {
   }
   changHeadText({ item }: any) {
     this.setState({
-<<<<<<< HEAD
-      headText: item.props.children[1],
-=======
       headText: item.props.children[1].props.children,
->>>>>>> a14afed227e6efb7b75a9fa0f1d61dc9110f03a6
     });
   }
 }

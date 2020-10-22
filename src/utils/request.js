@@ -13,20 +13,11 @@ const request = axios.create({
 });
 
 //拦截请求
-<<<<<<< HEAD
-request.interceptors.request.use(config => {
-    console.log(localStorage.getItem('token'))
-    const token = localStorage.getItem('token');
-    config.headers.authorization = token;
-    return config;
-})
-=======
 request.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
   config.headers.authorization = token;
   return config;
 });
->>>>>>> a14afed227e6efb7b75a9fa0f1d61dc9110f03a6
 
 //拦截响应
 request.interceptors.response.use(
