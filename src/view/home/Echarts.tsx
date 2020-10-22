@@ -5,17 +5,18 @@ export default class Echarts extends Component {
     state = {
         edata: {
             title: {
-                text: 'ECharts 入门示例'
+                text: '1801B第三小组'
             },
             tooltip: {},
             xAxis: {
-                data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']
+                data: ['刘涵', '杨坤朋', '高泽康', '南佳佳', '耿文彦', '刘冠宗']
             },
             yAxis: {},
             series: [{
-                name: '销量',
+                name: '成绩',
                 type: 'bar',
-                data: [5, 20, 36, 10, 10, 20]
+                color: 'hotpink',
+                data: [100, 80, 78, 65, 90, 40]
             }]
         }
     }
@@ -24,7 +25,6 @@ export default class Echarts extends Component {
         return (
             <div className="echarts">
                 <div className="e18" ref={el => this.e18 = el}>
-
                 </div>
             </div>
         )

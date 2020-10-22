@@ -4,6 +4,7 @@ import RouterView from "@/router/RouterView";
 import { Link } from "react-router-dom";
 import { AppstoreOutlined } from "@ant-design/icons";
 import { observer, inject } from "mobx-react";
+import {idnoth} from '@/api/user'
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
@@ -19,6 +20,7 @@ interface Iprops {
 }
 interface Istate {
   headText: string;
+  userIndentityData: Array<any>
 }
 
 @inject((store) => store)
@@ -28,9 +30,22 @@ export default class Testques extends Component<Iprops, Istate> {
     super(props);
     this.state = {
       headText: "添加试题",
+      userIndentityData: []
     };
   }
-  componentDidMount() {}
+  componentDidMount() {
+    this.getUserIndentity();
+  }
+  async getUserIndentity () {
+    const res = await idnoth ();
+    console.log(res);
+    this.setState ({
+        userIndentityData: res.data.data
+    },() => {
+     let idview = this.state.userIndentityData.filter(item => item.identity_text === '出题者');
+     console.log(idview);
+    })
+}
   render() {
     return (
       <div className="home">
