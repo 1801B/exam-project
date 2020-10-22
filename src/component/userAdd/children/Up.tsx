@@ -55,7 +55,7 @@ function Add() {
   return (
     <Form form={form} name="up" initialValues={{ remember: true }} onFinish={onFinish}>
       <Form.Item name="user_id">
-        <Select style={{ width: "65%" }} defaultActiveFirstOption={false} placeholder="选择身份id">
+        <Select style={{ width: "65%" }} defaultActiveFirstOption={false} placeholder="选择用户">
           {optionUser.map((item: any) => {
             return (
               <Option key={item.user_id} value={item.user_id}>
