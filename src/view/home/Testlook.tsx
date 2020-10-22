@@ -1,26 +1,16 @@
 /*
- *                   江城子 . 程序员之歌
- * 
- *               十年生死两茫茫，写程序，到天亮。
- *                   千行代码，Bug何处藏。
- *               纵使上线又怎样，朝令改，夕断肠。
- * 
- *               领导每天新想法，天天改，日日忙。
- *                   相顾无言，惟有泪千行。
- *               每晚灯火阑珊处，夜难寐，加班狂。
- * 
- * @Descripttion : 
  * @Autor        : 高泽康
  * @Date         : 2020-10-20 10:37:13
- * @LastEditTime : 2020-10-21 19:01:53
+ * @LastEditTime : 2020-10-22 10:54:51
  * @FilePath     : \src\view\home\Testlook.tsx
  */
-import React, { Component } from 'react'
-import { _room, _grade, _zhou, _sou } from "../../api/apiss"
+import React, { Component, SelectHTMLAttributes, createRef } from 'react'
+import { _room, _grade, _zhou, _sou, _cha ,_chaid} from "../../api/apiss"
 interface Imsg {
     subject_text: string,
     subject_id: string,
-    index: number
+    index: number,
+
 }
 interface Zhou {
     questions_type_id: string,
@@ -38,6 +28,10 @@ interface huan {
     subject_text: string  //"javaScript上"
     title: string  //"机器人归位"
     user_name: string  //"dingshaoshan"
+    qusestions_type_id: string,
+    exam_id: string,
+    subject_id: string
+
 }
 interface IState {
     getdata: Array<Imsg>;//数组
@@ -45,15 +39,24 @@ interface IState {
     zhouData: Array<Zhou>
     leiData: Array<lei>
     fenData: Array<huan>
+    questions_ids: string
+
 }
 export default class Testlook extends Component<any, IState> {
+    constructor(props: any) {
+        super(props)
+    }
     state = {
         getdata: [],
         tabIndex: 0,
         zhouData: [],
         leiData: [],
-        fenData: []
+        fenData: [],
+        questions_ids: ""
     }
+    xiala1 = ''
+    // 创建Ref
+    xiala2 = createRef()
     componentDidMount() {
         this.getList()
         this.zhouList()
@@ -90,6 +93,40 @@ export default class Testlook extends Component<any, IState> {
             tabIndex: index
         })
     }
+    async cha() {
+        let questions_type_id = (this.xiala1 as any).value
+        // (this.xiala2.current as HTMLSelectElement) 断言xiala2的current是：select 元素，然后就能获取到value
+        let exam_id = (this.xiala2.current as HTMLSelectElement).value
+        let subject_id = (this.state.getdata[this.state.tabIndex] as any).subject_id
+        console.log(questions_type_id,exam_id,subject_id)
+        const res = await _cha(questions_type_id, exam_id, subject_id)
+        this.setState({
+            fenData:res.data.data
+         }) 
+    }
+   async xian(questions_id: string) {
+        this.setState({
+            questions_ids: questions_id
+        })
+        const res = await _chaid(questions_id)
+            console.log(res)
+            this.props.history.push({
+                pathname: "/home/usershow/xaingssq",
+                state: {
+                    obj:res.data.data
+                } 
+              })
+    }
+    async  bianji(questions_id:string){
+        const res = await _chaid(questions_id)
+        console.log(res)
+        this.props.history.push({
+            pathname: "/home/usershow/Teslookbian",
+            state: {
+                obj:res.data.data
+            } 
+          })
+    }
     render() {
         return (
             <div className="Testlook">
@@ -101,41 +138,45 @@ export default class Testlook extends Component<any, IState> {
                             )
                         })} </p>
                     <p className="p2"><span>考试类型:</span>
-                        <select className="xiala2">
+                        {/* 在select上写入ref，断言xiala2的类型为：React.RefObject<HTMLSelectElement> */}
+                        <select className="xiala2" ref={(this.xiala2 as React.RefObject<HTMLSelectElement>)}>
                             {
                                 this.state.leiData.map((item: lei, index: number) => {
                                     return (
-                                        <option key={index}>{item.exam_name}</option>
+                                        <option value={item.exam_id} key={index}>{item.exam_name}</option>
                                     )
                                 })
                             }
                         </select>
                         <span> 题目类型:</span>
-                        <select className="xiala1">
+                        <select className="xiala1" ref={(el) => { (this.xiala1 as any) = el }}>
                             {
                                 this.state.zhouData.map((item: Zhou, index: number) => {
                                     return (
-                                        <option key={index}>{item.questions_type_text}</option>
+                                        <option key={index} value={item.questions_type_id}>{item.questions_type_text}</option>
                                     )
                                 })
                             }
                         </select>
-                        <button>查询</button>
+                        <button onClick={() => { this.cha()}}>查询</button>
                     </p>
                 </div>
                 <div className="xia">
                     {
                         this.state.fenData.map((item: huan, index: number) => {
                             return (
-                                <div className="lie" key={index}>
-                                    <div className="dev">
-                            <p>{item.title}</p>
-                                        <p> <span>{item.exam_name} </span> 
-                                         <span>{item.questions_type_text}</span> <span>{item.subject_text}</span></p>
-                                        <p> <a href=""> {item.user_name} 发布着</a> </p>
+                                <div className="lie"  key={index}>
+                                    <div onClick={() => this.xian(item.questions_id)} className="dev">
+                                        <p>{item.title}</p>
+                                        <p>
+                                            <span className="exam_name">{item.exam_name} </span>
+                                            <span className="questions_type_text">{item.questions_type_text}</span>
+                                            <span className="subject_text">{item.subject_text}</span>
+                                        </p>
+                                        <p> <a href=""> {item.user_name} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 发布者</a> </p>
                                     </div>
                                     <div className="de2">
-                                        <span>编辑</span>
+                                        <span onClick={()=>this.bianji(item.questions_id)} >编辑</span>
                                     </div>
                                 </div>
                             )

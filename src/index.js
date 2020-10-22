@@ -2,7 +2,7 @@
  * @Descripttion : 
  * @Autor        : 高泽康
  * @Date         : 2020-10-20 10:37:13
- * @LastEditTime : 2020-10-21 19:10:50
+ * @LastEditTime : 2020-10-21 19:16:18
  * @FilePath     : \src\index.js
  */
 import React from "react";
@@ -15,7 +15,6 @@ import App from "@/App.tsx";
 import { Provider } from "mobx-react";
 import store from "@/store";
 
-import "./index.scss";
 import "@/assets/css/login.scss";
 import "@/assets/css/userAdd.scss";
 

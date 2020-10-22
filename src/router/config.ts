@@ -2,9 +2,9 @@
  * @Description:
  * @Author: 刘涵
  * @Date: 2020-10-19 10:37:01
- * @LastEditors: 刘涵
- * @LastEditTime: 2020-10-20 14:31:53
- * @FilePath: \react-mobx-ts\src\router\config.ts
+ * @LastEditors  : Please set LastEditors
+ * @LastEditTime : 2020-10-22 10:55:22
+ * @FilePath     : \src\router\config.ts
  */
 import Home from "@/view/Home";
 import Detail from "@/view/Detail";
@@ -34,7 +34,8 @@ import Idnapi from "@/view/home/usershow/Idnapi";
 import Idnoth from "@/view/home/usershow/Idnoth";
 import Userdata from "@/view/home/usershow/Userdata";
 import Viewoth from "@/view/home/usershow/Viewoth";
-
+import xaingssq from "@/view/home/usershow/xaingssq";
+import Teslookbian from "@/view/home/usershow/Teslookbian"
 const router = [
   {
     path: "/",
@@ -45,6 +46,16 @@ const router = [
     name: "Home",
     component: Home,
     children: [
+      {
+        path: "/home/usershow/xaingssq",
+        name: "xaingssq",
+        component: xaingssq
+      },
+      {
+        path: "/home/usershow/Teslookbian",
+        name: "Teslookbian",
+        component:Teslookbian
+      },
       {
         path: "/home/testadd",
         name: "Testques",
