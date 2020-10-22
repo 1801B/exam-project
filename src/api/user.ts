@@ -1,5 +1,5 @@
 /*
- * @Description: 
+ * @Description:
  * @Author: 刘涵
  * @Date: 2020-10-21 14:44:40
  * @LastEditors: 刘涵
@@ -7,11 +7,17 @@
  * @FilePath: \counterplan\src\api\user.ts
  */
 import request from "@/utils/request";
-import { User, UpUser, IdentityEdit, AuthorityApiEdit, OnsetIdentityApi, OnsetIdentityView, AuthorityApiView } from "@/interface";
+import { User, UpUser, IdentityEdit, AuthorityApiEdit, OnsetIdentityApi, OnsetIdentityView, AuthorityApiView, UserViewListId } from "@/interface";
 
 interface Login {
   username: string;
   password: string;
+}
+
+// 根据用户id，返回用户视图
+export function userViewList(user_id: UserViewListId) {
+  const url = "/api/user/new";
+  return request.get(url, { params: { user_id } });
 }
 
 export function userData() {

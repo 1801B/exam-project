@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import echarts from 'echarts'
+import "@/assets/css/echarts.scss"
 
 export default class Echarts extends Component {
     state = {
@@ -23,7 +24,7 @@ export default class Echarts extends Component {
     e18!: HTMLDivElement | null
     render() {
         return (
-            <div className="echarts">
+            <div className="echartsa">
                 <div className="e18" ref={el => this.e18 = el}>
                 </div>
             </div>
