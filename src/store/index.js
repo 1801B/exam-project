@@ -3,10 +3,10 @@
  * @Author: 刘涵
  * @Date: 2020-10-12 11:25:41
  * @LastEditors: 刘涵
- * @LastEditTime: 2020-10-12 16:32:17
- * @FilePath: \my-react-mobx\src\store\index.js
+ * @LastEditTime: 2020-10-20 18:47:41
+ * @FilePath: \react-mobx-ts\src\store\index.js
  */
-const context = require.context('./model', false, /\.js$/);
+const context = require.context('./model', false, /\.js|\.ts$/);
 
 const getModel = context.keys().map(key => context(key));
 
