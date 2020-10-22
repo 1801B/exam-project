@@ -4,6 +4,7 @@ import RouterView from "@/router/RouterView";
 import { Link } from "react-router-dom";
 import { AppstoreOutlined } from "@ant-design/icons";
 import { observer, inject } from "mobx-react";
+import { userViewList } from "@/api/user";
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
@@ -19,6 +20,7 @@ interface Iprops {
 }
 interface Istate {
   headText: string;
+  routerList: Array<any>;
 }
 
 @inject((store) => store)
@@ -28,20 +30,23 @@ export default class Testques extends Component<Iprops, Istate> {
     super(props);
     this.state = {
       headText: "添加试题",
+      routerList: [],
     };
   }
-  componentDidMount() {}
+
+  async componentDidMount() {
+    let res = await userViewList((this.props as any).user.userInfo.user_id ? (this.props as any).user.userInfo.user_id : JSON.parse(sessionStorage.getItem("userInfo") as string).user_id);
+    console.log(res.data);
+  }
+
   render() {
     return (
       <div className="home">
         <header className="header">
-          <img
-            src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1551624718911&di=4a7004f8d71bd8da84d4eadf1b59e689&imgtype=0&src=http%3A%2F%2Fimg105.job1001.com%2Fupload%2Falbum%2F2014-10-15%2F1413365052_95IE3msH.jpg"
-            alt=""
-          />
+          <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1551624718911&di=4a7004f8d71bd8da84d4eadf1b59e689&imgtype=0&src=http%3A%2F%2Fimg105.job1001.com%2Fupload%2Falbum%2F2014-10-15%2F1413365052_95IE3msH.jpg" alt="" />
           <dl>
-            <dd></dd>
-            <dt>刘涵</dt>
+            <dt></dt>
+            <dd>{(this.props as any).user.userInfo.user_name ? (this.props as any).user.userInfo.user_name : JSON.parse(sessionStorage.getItem("userInfo") as string).user_name}</dd>
           </dl>
         </header>
         <Layout>
@@ -102,17 +107,11 @@ export default class Testques extends Component<Iprops, Istate> {
             </Menu>
           </Sider>
           <Layout>
-            <Header
-              className="site-layout-sub-header-background"
-              style={{ padding: 0 }}
-            >
+            <Header className="site-layout-sub-header-background" style={{ padding: 0 }}>
               {this.state.headText}
             </Header>
             <Content style={{ margin: "24px 16px 0" }}>
-              <div
-                className="site-layout-background"
-                style={{ padding: 24, minHeight: 360 }}
-              >
+              <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
                 <RouterView routes={this.props.routes} />
               </div>
             </Content>

@@ -44,3 +44,7 @@ export interface AuthorityApiView {
   view_authority_text: string;
   view_id: string;
 }
+
+export interface UserViewListId {
+  user_id: string;
+}
