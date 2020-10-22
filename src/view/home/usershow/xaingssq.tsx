@@ -35,18 +35,18 @@ export default class xaingssq extends Component<Iprops, Istate> {
         })
     }
     render() {
-            const { exam_id,
+            const { //exam_id,
                 exam_name,
-                json_path,
+                //json_path,
                 questions_answer,
-                questions_id,
+                //questions_id,
                 questions_stem,
-                questions_type_id,
+                //questions_type_id,
                 questions_type_text,
-                subject_id,
+                //subject_id,
                 subject_text,
                 title,
-                user_id,
+                //user_id,
                 user_name,} =this.props.location.state.obj[0]
         console.log(this.props.location.state.obj)
         return (

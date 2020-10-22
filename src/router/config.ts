@@ -3,7 +3,7 @@
  * @Author: 刘涵
  * @Date: 2020-10-19 10:37:01
  * @LastEditors  : Please set LastEditors
- * @LastEditTime : 2020-10-22 10:55:22
+ * @LastEditTime : 2020-10-22 15:32:08
  * @FilePath     : \src\router\config.ts
  */
 import Home from "@/view/Home";
@@ -18,8 +18,13 @@ import Testlook from "@/view/home/Testlook";
 import Useradd from "@/view/home/Useradd";
 import Usershow from "@/view/home/Usershow";
 
-import Examadd from "@/view/home/Examadd";
-import Examlist from "@/view/home/Examlist";
+
+import Examadd from '@/view/home/Examadd'
+import Examlist from '@/view/home/Examlist'
+//新建试卷
+import ExamNew from '@/view/home/ExamNew'
+// 试卷详情
+import ExamDetail from '@/view/home/ExamDetail'
 
 import Class from "@/view/home/Class";
 import Classroom from "@/view/home/Classroom";
@@ -148,6 +153,16 @@ const router = [
         name: "Waitclass",
         component: Waitclass,
       },
+      {
+        path: '/home/examDetail',
+        name: 'ExamDetail',
+        component: ExamDetail
+    },
+    {
+      path: '/home/examNew',
+      name: 'ExamNew',
+      component: ExamNew
+  },
     ],
   },
   {

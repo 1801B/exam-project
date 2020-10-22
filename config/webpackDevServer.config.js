@@ -103,12 +103,11 @@ module.exports = function(proxy, allowedHost) {
     // `proxy` is run between `before` and `after` `webpack-dev-server` hooks
     proxy:{
       "/api": {
-        target: "http://127.0.0.1:7001", 
-        changeOrigin: true,
-        pathRewrite: {"^/api" : "/"},
-        secure: true
-        
-        }
+                target: "http://127.0.0.1:7001", 
+                changeOrigin: true,
+                pathRewrite: {"^/api" : "/"},
+                secure: true
+              }
     },
     before(app, server) {
       // Keep `evalSourceMapMiddleware` and `errorOverlayMiddleware`

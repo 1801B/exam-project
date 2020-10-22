@@ -1,9 +1,23 @@
+/*
+ * @Description:
+ * @Author: 刘涵
+ * @Date: 2020-10-21 14:44:40
+ * @LastEditors: 刘涵
+ * @LastEditTime: 2020-10-21 20:58:58
+ * @FilePath: \counterplan\src\api\user.ts
+ */
 import request from "@/utils/request";
-import { User, UpUser, IdentityEdit, AuthorityApiEdit, OnsetIdentityApi, OnsetIdentityView } from "@/interface";
+import { User, UpUser, IdentityEdit, AuthorityApiEdit, OnsetIdentityApi, OnsetIdentityView, AuthorityApiView, UserViewListId } from "@/interface";
 
 interface Login {
   username: string;
   password: string;
+}
+
+// 根据用户id，返回用户视图
+export function userViewList(user_id: UserViewListId) {
+  const url = "/api/user/new";
+  return request.get(url, { params: { user_id } });
 }
 
 export function userData() {
@@ -13,6 +27,26 @@ export function userData() {
 
 export function userIdentity() {
   const url = "/api/user/identity";
+  return request.get(url);
+}
+
+export function apioauth() {
+  const url = "/api/user/api_authority";
+  return request.get(url);
+}
+
+export function idnapi() {
+  const url = "/api/user/identity_api_authority_relation";
+  return request.get(url);
+}
+
+export function viewoth() {
+  const url = "/api/user/view_authority";
+  return request.get(url);
+}
+
+export function idnoth() {
+  const url = "/api/user/identity_view_authority_relation";
   return request.get(url);
 }
 
@@ -80,4 +114,10 @@ export function _setIdentityApi(query: OnsetIdentityApi) {
 export function _setIdentityView(query: OnsetIdentityView) {
   const url = "/api/user/setIdentityView";
   return request.post(url, { ...query });
+}
+
+// 添加视图接口
+export function _authorityViewEdit(params: AuthorityApiView) {
+  const url = "/user/authorityView/edit";
+  return request.get(url, { params });
 }

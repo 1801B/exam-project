@@ -52,10 +52,11 @@ class Login extends Component<Props, any> {
     const { username, password } = values;
 
     let res = await _login({ username, password });
+    // console.log(res.data);
     // 弹出提示框
     this.openNotification({ code: res.data.code, msg: res.data.msg });
     // token存入mobx中
-    this.props.user.getToken(res.data.token);
+    this.props.user.userMsg({ token: res.data.token, userInfo: res.data.userInfo });
     // 重置表单
     this.onReset();
     // 判断是否登录成功

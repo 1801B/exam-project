@@ -25,7 +25,6 @@ function SetIdentityApi() {
   useEffect(() => {}, [optionApi]);
 
   const onFinish = async (values: OnsetIdentityApi) => {
-    console.log(values);
     let res = await _setIdentityApi(values);
     if (res.data.code !== 1) {
       openNotification({ code: res.data.code, msg: res.data.msg });

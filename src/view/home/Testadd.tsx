@@ -1,13 +1,13 @@
 /*
- * @Descripttion : 
+ * @Descripttion :
  * @Autor        : 高泽康
  * @Date         : 2020-10-20 10:37:13
- * @LastEditTime : 2020-10-22 15:01:03
+ * @LastEditTime : 2020-10-22 15:44:29
  * @FilePath     : \src\view\home\Testadd.tsx
  */
 
 import React, { Component } from 'react'
-import { _room, _grade, _zhou, _sou, _tianjia } from "../../api/apiss"
+import { _room, _grade, _zhou, _tianjia } from "../../api/apiss"
 //映入wangeditor 插件 
 import E from "wangeditor"
 interface zhouDatas {
@@ -36,9 +36,9 @@ let editor: E | null = null
 //声明他一下
 let editor1: E | null = null
 export default class Testques extends Component<any, State> {
-    constructor(props: any) {
-        super(props)
-    }
+    // constructor(props: any) {
+    //     super(props)
+    // }
     state = {
         list: [],
         tg: '',

@@ -40,4 +40,11 @@ export interface OnsetIdentityView {
   view_authority_id: string;
 }
 
-// export interface AuthorityApiEdit
+export interface AuthorityApiView {
+  view_authority_text: string;
+  view_id: string;
+}
+
+export interface UserViewListId {
+  user_id: string;
+}

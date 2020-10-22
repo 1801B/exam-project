@@ -1,10 +1,10 @@
 /*
  * @Autor        : 高泽康
  * @Date         : 2020-10-20 10:37:13
- * @LastEditTime : 2020-10-22 10:54:51
+ * @LastEditTime : 2020-10-22 15:46:24
  * @FilePath     : \src\view\home\Testlook.tsx
  */
-import React, { Component, SelectHTMLAttributes, createRef } from 'react'
+import React, { Component, createRef } from 'react'
 import { _room, _grade, _zhou, _sou, _cha ,_chaid} from "../../api/apiss"
 interface Imsg {
     subject_text: string,
@@ -43,9 +43,9 @@ interface IState {
 
 }
 export default class Testlook extends Component<any, IState> {
-    constructor(props: any) {
-        super(props)
-    }
+    // constructor(props: any) {
+    //     super(props)
+    // }
     state = {
         getdata: [],
         tabIndex: 0,
@@ -173,7 +173,7 @@ export default class Testlook extends Component<any, IState> {
                                             <span className="questions_type_text">{item.questions_type_text}</span>
                                             <span className="subject_text">{item.subject_text}</span>
                                         </p>
-                                        <p> <a href=""> {item.user_name} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 发布者</a> </p>
+                                        <p> <span> {item.user_name} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 发布者</span> </p>
                                     </div>
                                     <div className="de2">
                                         <span onClick={()=>this.bianji(item.questions_id)} >编辑</span>

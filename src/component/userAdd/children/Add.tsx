@@ -17,9 +17,7 @@ function Add() {
     })();
   }, []);
 
-  useEffect(() => {
-    return;
-  }, [optionList]);
+  useEffect(() => {}, [optionList]);
 
   const onFinish = async (values: User) => {
     let res = await _user(values);

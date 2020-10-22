@@ -9,7 +9,6 @@ function AuthorityApi() {
   const [form] = Form.useForm();
 
   const onFinish = async (values: any) => {
-    console.log(values);
     let res = await _authorityApiEdit(values);
     if (res.data.code !== 1) {
       openNotification({ code: res.data.code, msg: res.data.msg });

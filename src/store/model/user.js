@@ -8,11 +8,14 @@ class UserStore {
 
   @observable namespace = "user";
   @observable token = "";
+  @observable userInfo = {};
   @observable userData = [];
 
-  @action getToken = (token) => {
+  @action userMsg = ({ token, userInfo }) => {
     this.token = token;
-    localStorage.setItem("token", token);
+    this.userInfo = userInfo;
+    sessionStorage.setItem("userInfo", JSON.stringify(userInfo));
+    sessionStorage.setItem("token", token);
   };
 
   @action getUserData = async () => {
