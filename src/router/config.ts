@@ -2,9 +2,9 @@
  * @Description:
  * @Author: 刘涵
  * @Date: 2020-10-19 10:37:01
- * @LastEditors: 南佳佳
- * @LastEditTime: 2020-10-22 09:16:23
- * @FilePath: \react-mobx-ts\src\router\config.ts
+ * @LastEditors  : Please set LastEditors
+ * @LastEditTime : 2020-10-22 15:32:08
+ * @FilePath     : \src\router\config.ts
  */
 import Home from "@/view/Home";
 import Detail from "@/view/Detail";
@@ -30,7 +30,11 @@ import Class from "@/view/home/Class";
 import Classroom from "@/view/home/Classroom";
 import Student from "@/view/home/Student";
 
-import Waitclass from "@/view/home/Waitclass";
+
+
+import Waitclass from '@/view/home/Waitclass'
+import Waitclassmate from '@/view/home/Waitclassmate'
+import StudentExamDetail from '@/view/home/StudentExamDetail'
 
 // 引入3级路由
 import Apioth from "@/view/home/usershow/Apioth";
@@ -39,7 +43,8 @@ import Idnapi from "@/view/home/usershow/Idnapi";
 import Idnoth from "@/view/home/usershow/Idnoth";
 import Userdata from "@/view/home/usershow/Userdata";
 import Viewoth from "@/view/home/usershow/Viewoth";
-
+import xaingssq from "@/view/home/usershow/xaingssq";
+import Teslookbian from "@/view/home/usershow/Teslookbian"
 const router = [
   {
     path: "/",
@@ -50,6 +55,16 @@ const router = [
     name: "Home",
     component: Home,
     children: [
+      {
+        path: "/home/usershow/xaingssq",
+        name: "xaingssq",
+        component: xaingssq
+      },
+      {
+        path: "/home/usershow/Teslookbian",
+        name: "Teslookbian",
+        component:Teslookbian
+      },
       {
         path: "/home/testadd",
         name: "Testques",
@@ -152,6 +167,16 @@ const router = [
       name: 'ExamNew',
       component: ExamNew
   },
+  {
+    path: '/home/waitclassmate',
+    name: 'Waitclassmate',
+    component: Waitclassmate
+},
+{
+    path:'/home/studentexamdetail/:id',
+    name:'StudentExamDetail',
+    component: StudentExamDetail
+}
     ],
   },
   {

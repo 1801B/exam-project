@@ -1,6 +1,11 @@
 .home {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  .header {
     width: 100%;
-    height: 100%;
+    height: 60px;
     display: flex;
     flex-direction: column;
     .header {
@@ -236,8 +241,8 @@
         }
     }
 }
-
+}
 .active {
     background: blue;
     color: #fefefe;
-}
+  }
