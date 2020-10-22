@@ -99,6 +99,11 @@ export default class Testques extends Component<Iprops, Istate> {
                   <Link to="/home/waitclass">待批班级</Link>
                 </Menu.Item>
               </SubMenu>
+              <SubMenu key="sub6" icon={<AppstoreOutlined />} title="图表管理">
+                <Menu.Item key="12">
+                  <Link to="/home/echarts">1801B</Link>
+                </Menu.Item>
+              </SubMenu>
             </Menu>
           </Sider>
           <Layout>

@@ -2,9 +2,9 @@
  * @Description:
  * @Author: 刘涵
  * @Date: 2020-10-19 10:37:01
- * @LastEditors: 南佳佳
- * @LastEditTime: 2020-10-22 09:16:23
- * @FilePath: \react-mobx-ts\src\router\config.ts
+ * @LastEditors: 刘涵
+ * @LastEditTime: 2020-10-22 10:58:03
+ * @FilePath: \counterplan\src\router\config.ts
  */
 import Home from "@/view/Home";
 import Detail from "@/view/Detail";
@@ -31,6 +31,8 @@ import Classroom from "@/view/home/Classroom";
 import Student from "@/view/home/Student";
 
 import Waitclass from "@/view/home/Waitclass";
+
+import Echarts from "@/view/home/Echarts"
 
 // 引入3级路由
 import Apioth from "@/view/home/usershow/Apioth";
@@ -151,7 +153,12 @@ const router = [
       path: '/home/examNew',
       name: 'ExamNew',
       component: ExamNew
-  },
+    },
+    {
+      path: '/home/echarts',
+      name: 'Echarts',
+      component: Echarts
+    },
     ],
   },
   {
