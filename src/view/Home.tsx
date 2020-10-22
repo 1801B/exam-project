@@ -45,7 +45,7 @@ export default class Testques extends Component<Iprops, Istate> {
     return (
       <div className="home">
         <header className="header">
-          <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1551624718911&di=4a7004f8d71bd8da84d4eadf1b59e689&imgtype=0&src=http%3A%2F%2Fimg105.job1001.com%2Fupload%2Falbum%2F2014-10-15%2F1413365052_95IE3msH.jpg" alt="" />
+          <img src="http://www.utc.edu/center-women-gender-equity/images/spectrumlogoupdated.jpg" alt="" />
           <dl>
             <dt></dt>
             <dd>{(this.props as any).user.userInfo.user_name ? (this.props as any).user.userInfo.user_name : JSON.parse(sessionStorage.getItem("userInfo") as string).user_name}</dd>

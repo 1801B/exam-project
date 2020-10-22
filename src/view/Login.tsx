@@ -32,8 +32,6 @@ class Login extends Component<Props, any> {
               <Form.Item name="remember" valuePropName="checked" noStyle>
                 <Checkbox>记住密码</Checkbox>
               </Form.Item>
-
-              <span className="login-form-forgot">忘记密码</span>
             </Form.Item>
 
             <Form.Item>
