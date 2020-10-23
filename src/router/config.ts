@@ -6,47 +6,93 @@
  * @LastEditTime: 2020-10-22 18:37:00
  * @FilePath: \counterplan\src\router\config.ts
  */
+import { lazy } from "react";
 import Home from "@/view/Home";
-import Detail from "@/view/Detail";
 import Login from "@/view/Login";
 
 // 引入2级路由
-import Testadd from "@/view/home/Testadd";
-import Testlist from "@/view/home/Testlist";
-import Testlook from "@/view/home/Testlook";
+const Testadd = lazy(() => {
+  return new Promise((resolve) => setTimeout(resolve, 200)).then(() => import("@/view/home/Testadd"));
+});
+const Testlist = lazy(() => {
+  return new Promise((resolve) => setTimeout(resolve, 200)).then(() => import("@/view/home/Testlist"));
+});
+const Testlook = lazy(() => {
+  return new Promise((resolve) => setTimeout(resolve, 200)).then(() => import("@/view/home/Testlook"));
+});
 
-import Useradd from "@/view/home/Useradd";
-import Usershow from "@/view/home/Usershow";
+const Useradd = lazy(() => {
+  return new Promise((resolve) => setTimeout(resolve, 200)).then(() => import("@/view/home/Useradd"));
+});
+const Usershow = lazy(() => {
+  return new Promise((resolve) => setTimeout(resolve, 200)).then(() => import("@/view/home/Usershow"));
+});
 
-
-import Examadd from '@/view/home/Examadd'
-import Examlist from '@/view/home/Examlist'
+const Examadd = lazy(() => {
+  return new Promise((resolve) => setTimeout(resolve, 200)).then(() => import("@/view/home/Examadd"));
+});
+const Examlist = lazy(() => {
+  return new Promise((resolve) => setTimeout(resolve, 200)).then(() => import("@/view/home/Examlist"));
+});
 //新建试卷
-import ExamNew from '@/view/home/ExamNew'
+const ExamNew = lazy(() => {
+  return new Promise((resolve) => setTimeout(resolve, 200)).then(() => import("@/view/home/ExamNew"));
+});
 // 试卷详情
-import ExamDetail from '@/view/home/ExamDetail'
+const ExamDetail = lazy(() => {
+  return new Promise((resolve) => setTimeout(resolve, 200)).then(() => import("@/view/home/ExamDetail"));
+});
 
-import Class from "@/view/home/Class";
-import Classroom from "@/view/home/Classroom";
-import Student from "@/view/home/Student";
+const Class = lazy(() => {
+  return new Promise((resolve) => setTimeout(resolve, 200)).then(() => import("@/view/home/Class"));
+});
+const Classroom = lazy(() => {
+  return new Promise((resolve) => setTimeout(resolve, 200)).then(() => import("@/view/home/Classroom"));
+});
+const Student = lazy(() => {
+  return new Promise((resolve) => setTimeout(resolve, 200)).then(() => import("@/view/home/Student"));
+});
 
+const Waitclass = lazy(() => {
+  return new Promise((resolve) => setTimeout(resolve, 200)).then(() => import("@/view/home/Waitclass"));
+});
+const Waitclassmate = lazy(() => {
+  return new Promise((resolve) => setTimeout(resolve, 200)).then(() => import("@/view/home/Waitclassmate"));
+});
+const StudentExamDetail = lazy(() => {
+  return new Promise((resolve) => setTimeout(resolve, 200)).then(() => import("@/view/home/StudentExamDetail"));
+});
 
-
-import Waitclass from '@/view/home/Waitclass'
-import Waitclassmate from '@/view/home/Waitclassmate'
-import StudentExamDetail from '@/view/home/StudentExamDetail'
-
-import Echarts from "@/view/home/Echarts"
+const Echarts = lazy(() => {
+  return new Promise((resolve) => setTimeout(resolve, 200)).then(() => import("@/view/home/Echarts"));
+});
 
 // 引入3级路由
-import Apioth from "@/view/home/usershow/Apioth";
-import Iddata from "@/view/home/usershow/Iddata";
-import Idnapi from "@/view/home/usershow/Idnapi";
-import Idnoth from "@/view/home/usershow/Idnoth";
-import Userdata from "@/view/home/usershow/Userdata";
-import Viewoth from "@/view/home/usershow/Viewoth";
-import xaingssq from "@/view/home/usershow/xaingssq";
-import Teslookbian from "@/view/home/usershow/Teslookbian"
+const Apioth = lazy(() => {
+  return new Promise((resolve) => setTimeout(resolve, 200)).then(() => import("@/view/home/usershow/Apioth"));
+});
+const Iddata = lazy(() => {
+  return new Promise((resolve) => setTimeout(resolve, 200)).then(() => import("@/view/home/usershow/Iddata"));
+});
+const Idnapi = lazy(() => {
+  return new Promise((resolve) => setTimeout(resolve, 200)).then(() => import("@/view/home/usershow/Idnapi"));
+});
+const Idnoth = lazy(() => {
+  return new Promise((resolve) => setTimeout(resolve, 200)).then(() => import("@/view/home/usershow/Idnoth"));
+});
+const Userdata = lazy(() => {
+  return new Promise((resolve) => setTimeout(resolve, 200)).then(() => import("@/view/home/usershow/Userdata"));
+});
+const Viewoth = lazy(() => {
+  return new Promise((resolve) => setTimeout(resolve, 200)).then(() => import("@/view/home/usershow/Viewoth"));
+});
+const xaingssq = lazy(() => {
+  return new Promise((resolve) => setTimeout(resolve, 200)).then(() => import("@/view/home/usershow/xaingssq"));
+});
+const Teslookbian = lazy(() => {
+  return new Promise((resolve) => setTimeout(resolve, 200)).then(() => import("@/view/home/usershow/Teslookbian"));
+});
+
 const router = [
   {
     path: "/",
@@ -60,12 +106,12 @@ const router = [
       {
         path: "/home/usershow/xaingssq",
         name: "xaingssq",
-        component: xaingssq
+        component: xaingssq,
       },
       {
         path: "/home/usershow/Teslookbian",
         name: "Teslookbian",
-        component:Teslookbian
+        component: Teslookbian,
       },
       {
         path: "/home/testadd",
@@ -160,36 +206,31 @@ const router = [
         component: Waitclass,
       },
       {
-        path: '/home/examDetail',
-        name: 'ExamDetail',
-        component: ExamDetail
-    },
-    {
-      path: '/home/examNew',
-      name: 'ExamNew',
-      component: ExamNew
-    },
-    {
-      path: '/home/echarts',
-      name: 'Echarts',
-      component: Echarts
-    },
-  {
-    path: '/home/waitclassmate',
-    name: 'Waitclassmate',
-    component: Waitclassmate
-},
-{
-    path:'/home/studentexamdetail/:id',
-    name:'StudentExamDetail',
-    component: StudentExamDetail
-}
+        path: "/home/examDetail",
+        name: "ExamDetail",
+        component: ExamDetail,
+      },
+      {
+        path: "/home/examNew",
+        name: "ExamNew",
+        component: ExamNew,
+      },
+      {
+        path: "/home/echarts",
+        name: "Echarts",
+        component: Echarts,
+      },
+      {
+        path: "/home/waitclassmate",
+        name: "Waitclassmate",
+        component: Waitclassmate,
+      },
+      {
+        path: "/home/studentexamdetail/:id",
+        name: "StudentExamDetail",
+        component: StudentExamDetail,
+      },
     ],
-  },
-  {
-    path: "/detail",
-    name: "Detail",
-    component: Detail,
   },
   {
     path: "/login",

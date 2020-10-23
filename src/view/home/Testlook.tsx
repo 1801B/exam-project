@@ -1,7 +1,7 @@
 /*
  * @Autor        : 高泽康
  * @Date         : 2020-10-20 10:37:13
- * @LastEditTime : 2020-10-23 16:02:29
+ * @LastEditTime : 2020-10-23 16:41:46
  * @FilePath     : \src\view\home\Testlook.tsx
  */
 import React, { Component, createRef } from 'react'
@@ -154,7 +154,7 @@ export default class Testlook extends Component<any, IState> {
                                 })
                             }
                         </select>
-                        <button onClick={() => { this.cha()}}>查询</button>
+                        <button  className='gzk-btn' onClick={() => { this.cha()}}>查询</button>
                     </p>
                 </div>
                 <div className="xia">

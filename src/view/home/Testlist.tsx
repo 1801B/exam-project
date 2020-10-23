@@ -1,7 +1,7 @@
 /*
  * @Autor        : 高泽康
  * @Date         : 2020-10-20 10:37:13
- * @LastEditTime : 2020-10-23 16:19:17
+ * @LastEditTime : 2020-10-23 16:41:31
  * @FilePath     : \src\view\home\Testlist.tsx
  */
 
@@ -66,7 +66,7 @@ export default class Testlist extends Component<any, IState>{
         return (
             <div className="Testlist">
                 <div className="shang">
-                    <p><button onClick={() => this.ying()}>十添加类型</button> </p>
+                    <p><button  className='gzk-btn' onClick={() => this.ying()}>十添加类型</button> </p>
                 </div>
                 <div className="xia">
                     <table>
@@ -85,7 +85,7 @@ export default class Testlist extends Component<any, IState>{
                                         <tr key={index}>
                                             <th>{item.questions_type_id}</th>
                                             <th>{item.questions_type_text} </th>
-                                            <th><button onClick={() => this.bian(item.questions_type_id)}>删除</button> </th>
+                                            <th><button  className='gzk-btn' onClick={() => this.bian(item.questions_type_id)}>删除</button> </th>
                                         </tr>
                                     )
                                 })
@@ -97,7 +97,7 @@ export default class Testlist extends Component<any, IState>{
                     <div className="ds">
                         <p>创建新类型</p>
                         <p><input placeholder="请输入类型" value={this.state.tg} onChange={(e) => this.inputChange(e as any)}></input> </p>
-                        <p> <button className="qd" onClick={() => this.qd()}> 确定</button>  <button onClick={() => this.qx()}>取消</button> </p>
+                        <p> <button className="qd gzk-btn" onClick={() => this.qd()}> 确定</button>  <button  className='gzk-btn' onClick={() => this.qx()}>取消</button> </p>
                     </div>
                 </div>
             </div>

@@ -20,10 +20,16 @@ class UserStore {
 
   @action getUserData = async () => {
     const result = await userData();
-    console.log(result);
     runInAction(() => {
       this.userData = result.data.data;
     });
+  };
+
+  @action cleanAuth = () => {
+    this.token = "";
+    this.userInfo = "";
+    sessionStorage.removeItem("userInfo");
+    sessionStorage.removeItem("token");
   };
 }
 

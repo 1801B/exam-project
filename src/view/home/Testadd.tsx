@@ -2,7 +2,7 @@
  * @Descripttion :
  * @Autor        : 高泽康
  * @Date         : 2020-10-20 10:37:13
- * @LastEditTime : 2020-10-23 16:03:10
+ * @LastEditTime : 2020-10-23 16:39:08
  * @FilePath     : \src\view\home\Testadd.tsx
  */
 
@@ -142,7 +142,7 @@ export default class Testques extends Component<any, State> {
         </select>
         </p>
         <div id="box2"></div>
-        <p><button onClick={() => this.getInputValue()}>提交</button></p>
+        <p><button className='gzk-btn' onClick={() => this.getInputValue()}>提交</button></p>
       </div>
     )
   }

@@ -3,7 +3,7 @@ import { RouteComponentProps } from "react-router-dom";
 import { Form, Input, Button, Checkbox, notification } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { AntdForm } from "@/interface";
-import { _login } from "@/api/user.ts";
+import { _login, _userInfo } from "@/api/user.ts";
 import { CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
 import { inject, observer } from "mobx-react";
 import { FormInstance } from "antd/lib/form";
@@ -15,6 +15,15 @@ interface Props extends RouteComponentProps {
 @observer
 @inject("user")
 class Login extends Component<Props, any> {
+  async componentDidMount() {
+    if (sessionStorage.getItem("token") && sessionStorage.getItem("userInfo")) {
+      let res = await _userInfo();
+      if (res.data.code === 1) {
+        this.props.history.push("/home");
+      }
+    }
+  }
+
   formRef = React.createRef<FormInstance>();
 
   render() {

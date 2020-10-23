@@ -1,5 +1,5 @@
 /*
- * @Description: 
+ * @Description:
  * @Author: 刘涵
  * @Date: 2020-10-21 14:44:40
  * @LastEditors: 刘涵
@@ -12,6 +12,11 @@ import { User, UpUser, IdentityEdit, AuthorityApiEdit, OnsetIdentityApi, OnsetId
 interface Login {
   username: string;
   password: string;
+}
+
+export function _userInfo() {
+  const url = "/api/user/userInfo";
+  return request.get(url);
 }
 
 // 根据用户id，返回用户视图
