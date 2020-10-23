@@ -1,10 +1,10 @@
-import React, { Component, ComponentType } from "react";
-import { Layout, Menu } from "antd";
+import React, { Component, ComponentType, Suspense } from "react";
+import { Layout, Menu, Spin, Dropdown } from "antd";
 import RouterView from "@/router/RouterView";
 import { Link } from "react-router-dom";
 import { AppstoreOutlined } from "@ant-design/icons";
 import { observer, inject } from "mobx-react";
-import { userViewList } from "@/api/user";
+import { userViewList, _userInfo } from "@/api/user";
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
@@ -29,38 +29,53 @@ export default class Testques extends Component<Iprops, Istate> {
   constructor(props: Iprops) {
     super(props);
     this.state = {
-      headText: "添加试题",
+      headText: "",
       viewList: [],
     };
   }
 
   async componentDidMount() {
-    let res = await userViewList((this.props as any).user.userInfo.user_id ? (this.props as any).user.userInfo.user_id : JSON.parse(sessionStorage.getItem("userInfo") as string).user_id);
-    this.setState({
-      viewList: res.data.data,
-    });
+    if (sessionStorage.getItem("token") && sessionStorage.getItem("userInfo")) {
+      let info = await _userInfo();
+      if (info.data.code === 1) {
+        let res = await userViewList((this.props as any).user.userInfo.user_id ? (this.props as any).user.userInfo.user_id : JSON.parse(sessionStorage.getItem("userInfo") as string).user_id);
+        this.setState({
+          viewList: res.data.data,
+        });
+        return;
+      }
+    }
+    (this.props as any).history.push("/login");
   }
+
+  outLog = () => {
+    (this.props as any).user.cleanAuth();
+    (this.props as any).history.push("/login");
+  };
 
   render() {
     return (
       <div className="home">
         <header className="header">
           <img src="http://www.utc.edu/center-women-gender-equity/images/spectrumlogoupdated.jpg" alt="" />
-          <dl>
-            <dt></dt>
-            <dd>{(this.props as any).user.userInfo.user_name ? (this.props as any).user.userInfo.user_name : JSON.parse(sessionStorage.getItem("userInfo") as string).user_name}</dd>
-          </dl>
+          <Dropdown
+            overlay={
+              <Menu style={{ marginTop: "10px" }}>
+                <Menu.Item key="outLog" onClick={this.outLog}>
+                  退出登录
+                </Menu.Item>
+              </Menu>
+            }
+            trigger={["click"]}
+          >
+            <dl style={{ cursor: "pointer" }}>
+              <dt></dt>
+              <dd>{(this.props as any).user.userInfo.user_name ? (this.props as any).user.userInfo.user_name : JSON.parse(sessionStorage.getItem("userInfo") as string).user_name}</dd>
+            </dl>
+          </Dropdown>
         </header>
         <Layout>
-          <Sider
-            collapsedWidth="0"
-            onBreakpoint={(broken) => {
-              console.log(broken);
-            }}
-            onCollapse={(collapsed, type) => {
-              console.log(collapsed, type);
-            }}
-          >
+          <Sider collapsedWidth="0">
             <div className="logo" />
             <Menu theme="dark" mode="inline" onClick={({ item }) => this.changHeadText({ item })}>
               <SubMenu
@@ -121,12 +136,7 @@ export default class Testques extends Component<Iprops, Istate> {
                   <Link to="/home/student">学生管理</Link>
                 </Menu.Item>
               </SubMenu>
-              <SubMenu 
-                  key="sub5" 
-                  icon={<AppstoreOutlined />} 
-                  title="阅卷管理" 
-                  style={{ display: 
-                  this.state.viewList.findIndex((item) => item.view_authority_text === "批卷班级") !== -1 ? "block" : "none" }}>
+              <SubMenu key="sub5" icon={<AppstoreOutlined />} title="阅卷管理" style={{ display: this.state.viewList.findIndex((item) => item.view_authority_text === "批卷班级") !== -1 ? "block" : "none" }}>
                 <Menu.Item key="11" style={{ display: this.state.viewList.findIndex((item) => item.view_authority_text === "批卷班级") !== -1 ? "block" : "none" }}>
                   <Link to="/home/waitclass">待批班级</Link>
                 </Menu.Item>
@@ -139,12 +149,15 @@ export default class Testques extends Component<Iprops, Istate> {
             </Menu>
           </Sider>
           <Layout>
-            <Header className="site-layout-sub-header-background" style={{ padding: 0 }}>
+            <Header className="site-layout-sub-header-background" style={{ padding: 0, fontWeight: "bolder", fontSize: "17px" }}>
               {this.state.headText}
             </Header>
-            <Content style={{ margin: "24px 16px 0" }}>
-              <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
-                <RouterView routes={this.props.routes} />
+
+            <Content>
+              <div className="site-layout-background" style={{ padding: 24, minHeight: 360, position: "relative" }}>
+                <Suspense fallback={<Spin delay={0} style={{ position: "absolute", top: "50%", left: "50%" }} size="large" />}>
+                  <RouterView routes={this.props.routes} />
+                </Suspense>
               </div>
             </Content>
           </Layout>
