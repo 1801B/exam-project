@@ -3,7 +3,7 @@
  * @Author: 刘涵
  * @Date: 2020-09-14 20:00:12
  * @LastEditors  : Please set LastEditors
- * @LastEditTime : 2020-10-21 19:12:20
+ * @LastEditTime : 2020-10-23 13:04:14
  * @FilePath     : \src\utils\request.js
  */
 import axios from "axios";
@@ -14,8 +14,7 @@ const request = axios.create({
 
 //拦截请求
 request.interceptors.request.use(config => {
-    // localStorage.getItem('token')
-    const token = localStorage.getItem('token');
+    const token = sessionStorage.getItem('token');
     config.headers.authorization = token;
     return config;
 })

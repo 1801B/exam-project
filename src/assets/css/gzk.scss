@@ -20,6 +20,14 @@
     width: 100%;
     height: 100%;
     background: #fefefe;
+    button {
+        width: 150px;
+        height: 30px;
+        border-radius: 2%;
+        background: blue;
+        color: #fefefe;
+        margin-top: 20px;;
+    }
 }
 
 .site-layout-background,
@@ -130,16 +138,17 @@
         height: 30%;
         background: #f0f0f0;
         border-radius: 1%;
-        text-align: center;
+        // text-align: center;
         .p1{
           display: inline-block;
           width: 100%;
           height: 20%;
-          text-align: center;
+            margin-left: 3.6%;
           line-height: 20%;
           margin-top:50px;
           span{
             display: inline;
+            margin-left: -30%;
             text-align: center;
             line-height: 40%;
             margin-left: 10px;
@@ -150,7 +159,7 @@
             width: 100%;
             height: 20%;
             line-height: 20%;
-            margin-left: -14%;
+            // margin-left: -16%;
             span {
                 display: inline-block;
                 margin-left: 60px;
@@ -169,9 +178,11 @@
         margin-top: 2%;
         border-radius: 1%;
         width: 100%;
-        height: 64%;
+        height: 100%;
         background: #f0f0f0;
+
         .lie {
+            margin-top: 60px;
             display: flex;
             flex-direction: row;
             width: 100%;
@@ -181,6 +192,31 @@
             .dev {
                 width: 80%;
                 height: 100%;
+                display: flex;
+                flex-direction: column;
+                .exam_name{
+                    height: 100%;
+                    display: inline-block;
+                    background: rgba($color:yellow, $alpha: 0.3);
+                    color: red;
+                }
+                .questions_type_text{
+                    height: 100%;
+                    display: inline-block;
+                    background: rgba($color:blue, $alpha: 0.3);
+                    color: blue;
+                    margin-left: 10px;
+                }
+                .subject_text{
+                    height: 100%;
+                    display: inline-block;
+                    background: rgba($color:pink, $alpha: 0.3);
+                    color: pink;
+                    margin-left: 10px;
+                }
+                .user_name{
+                    color:  blue;
+                }
             }
             .de2 {
                 width: 25%;

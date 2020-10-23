@@ -2,7 +2,7 @@
  * @Descripttion : 
  * @Autor        : 高泽康
  * @Date         : 2020-10-20 20:08:19
- * @LastEditTime : 2020-10-22 16:53:19
+ * @LastEditTime : 2020-10-23 16:21:19
  * @FilePath     : \src\api\apiss.ts
  */
 import request from '../utils/request'
@@ -31,6 +31,12 @@ export function _leixing(id:string){
     const url ="/api/exam/delQuestionsType"
     return request.post(url,{id})
 }
+export function _tianjisass(text:string,sort:string){
+    const url ="/api/exam/insertQuestionsType"
+    return request.get(url,{params:{text,sort}})
+}
+
+
 
 export function _cha(questions_type_id:string,exam_id:string,subject_id:string){
     const url ="/api/exam/questions/condition"
@@ -39,6 +45,7 @@ export function _cha(questions_type_id:string,exam_id:string,subject_id:string){
 }
 export function _chaid(questions_id:string){
     const url ="/api/exam/questions/condition"
+
     return request.get(url,{params:{questions_id}})
     
 }

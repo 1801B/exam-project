@@ -1,12 +1,12 @@
 /*
  * @Autor        : 高泽康
  * @Date         : 2020-10-20 10:37:13
- * @LastEditTime : 2020-10-21 15:31:59
+ * @LastEditTime : 2020-10-23 16:19:17
  * @FilePath     : \src\view\home\Testlist.tsx
  */
 
 import React, { Component } from 'react'
-import { _grade, _leixing } from "../../api/apiss"
+import { _grade, _leixing,_tianjisass } from "../../api/apiss"
 interface Imsg {
     questions_type_id: string,
     questions_type_text: string,
@@ -34,8 +34,6 @@ export default class Testlist extends Component<any, IState>{
     }
     getList = async () => {
         let res = await _grade();
-        console.log(res.data.data)
-        console.log(this)
         this.setState({
             gradedata: res.data.data
         })
@@ -46,10 +44,12 @@ export default class Testlist extends Component<any, IState>{
             tg: el
         })
     }
-    qd() {
+    async qd() {
         this.setState({
             show: false
         })
+        let res = await _tianjisass(this.state.tg,"");
+        console.log(res)
     }
     ying() {
         this.setState({
@@ -81,7 +81,6 @@ export default class Testlist extends Component<any, IState>{
                             {
                                 //item:Imsg 如果不写就会报错
                                 this.state.gradedata.map((item: Imsg, index) => {
-                                    console.log(item)
                                     return (
                                         <tr key={index}>
                                             <th>{item.questions_type_id}</th>

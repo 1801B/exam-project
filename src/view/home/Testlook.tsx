@@ -1,7 +1,7 @@
 /*
  * @Autor        : 高泽康
  * @Date         : 2020-10-20 10:37:13
- * @LastEditTime : 2020-10-22 15:46:24
+ * @LastEditTime : 2020-10-23 16:02:29
  * @FilePath     : \src\view\home\Testlook.tsx
  */
 import React, { Component, createRef } from 'react'
@@ -86,7 +86,6 @@ export default class Testlook extends Component<any, IState> {
         this.setState({
             fenData: res.data.data
         })
-        console.log(this.state.fenData)
     }
     tab(index: number) {
         this.setState({
@@ -98,7 +97,6 @@ export default class Testlook extends Component<any, IState> {
         // (this.xiala2.current as HTMLSelectElement) 断言xiala2的current是：select 元素，然后就能获取到value
         let exam_id = (this.xiala2.current as HTMLSelectElement).value
         let subject_id = (this.state.getdata[this.state.tabIndex] as any).subject_id
-        console.log(questions_type_id,exam_id,subject_id)
         const res = await _cha(questions_type_id, exam_id, subject_id)
         this.setState({
             fenData:res.data.data
@@ -109,7 +107,6 @@ export default class Testlook extends Component<any, IState> {
             questions_ids: questions_id
         })
         const res = await _chaid(questions_id)
-            console.log(res)
             this.props.history.push({
                 pathname: "/home/usershow/xaingssq",
                 state: {
@@ -119,7 +116,6 @@ export default class Testlook extends Component<any, IState> {
     }
     async  bianji(questions_id:string){
         const res = await _chaid(questions_id)
-        console.log(res)
         this.props.history.push({
             pathname: "/home/usershow/Teslookbian",
             state: {
@@ -173,7 +169,7 @@ export default class Testlook extends Component<any, IState> {
                                             <span className="questions_type_text">{item.questions_type_text}</span>
                                             <span className="subject_text">{item.subject_text}</span>
                                         </p>
-                                        <p> <span> {item.user_name} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 发布者</span> </p>
+                                        <p> <span className="user_name"> {item.user_name} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 发布者</span> </p>
                                     </div>
                                     <div className="de2">
                                         <span onClick={()=>this.bianji(item.questions_id)} >编辑</span>

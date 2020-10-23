@@ -3,7 +3,7 @@ import {_grade,_class,_subject,_addGrade,_del_grade} from '@/api/manger'
 import "./class.css"
 import 'antd/dist/antd.css';
 import {Layout, Button,  Modal, Select, Form, Input,} from "antd";
-import { FormInstance } from '_antd@4.7.2@antd/lib/form/Form';
+import { FormInstance } from 'antd/lib/form/Form';
 import Change from "./class/change"
 
 const {  Content,   } = Layout;

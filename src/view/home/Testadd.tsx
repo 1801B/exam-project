@@ -2,7 +2,7 @@
  * @Descripttion :
  * @Autor        : 高泽康
  * @Date         : 2020-10-20 10:37:13
- * @LastEditTime : 2020-10-22 18:15:33
+ * @LastEditTime : 2020-10-23 16:03:10
  * @FilePath     : \src\view\home\Testadd.tsx
  */
 
@@ -64,7 +64,6 @@ export default class Testques extends Component<any, State> {
   async getList() {
     let res = await _zhou()
     //周考
-    console.log(res.data.data)
     this.setState({
       zhouData: res.data.data
     })
@@ -72,7 +71,6 @@ export default class Testques extends Component<any, State> {
   async zhouList() {
     let res = await _grade();
     //题型
-    console.log(res.data.data)
     this.setState({
       tiData: res.data.data
     })
@@ -80,7 +78,6 @@ export default class Testques extends Component<any, State> {
   async leiList() {
     let res = await _room();
     //课程
-    console.log(res.data.data)
     this.setState({
       xiuData: res.data.data
     })
@@ -102,6 +99,7 @@ export default class Testques extends Component<any, State> {
     let type = "addQuestions/addQuestions"
     let res = await _tianjia(title, exam_id, type, subject_id, questions_type_id, (questions_answer as string), (questions_stem as string))
     alert(res.data.msg)
+    window.location.reload()
   }
   render() {
     return (
